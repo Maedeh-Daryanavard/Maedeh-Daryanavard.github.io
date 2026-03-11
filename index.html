@@ -22,12 +22,14 @@
     body {
       margin: 0;
       font-family: Arial, Helvetica, sans-serif;
-      color: var(--text);
-      background: #ffffff;
+      color: #eaf1ff;
+      background:
+        radial-gradient(circle at top left, rgba(142,197,255,0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(201,167,255,0.18), transparent 25%),
+        linear-gradient(180deg, #070b16 0%, #0b1020 55%, #0e1530 100%);
       line-height: 1.55;
       overflow-x: hidden;
     }
-
     a {
       color: var(--link);
       text-decoration: none;
@@ -119,17 +121,11 @@
     }
 
     .section {
-      min-height: auto;
-      padding: 8px 0 18px;
-      border: none;
-      border-radius: 0;
-      background: transparent;
-      box-shadow: none;
-      display: block;
-      opacity: 1;
-      transform: none;
-      transition: none;
-      scroll-margin-top: 14px;
+      padding: 14px 0 22px;
+      background: rgba(10, 16, 36, 0.68);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 22px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
     }
 
     .section.visible {
@@ -223,14 +219,13 @@
     .hero-photo {
       position: relative;
     }
-
+ 
     .photo-frame {
-      padding: 0;
-      border-radius: 0;
-      background: transparent;
-      border: none;
+      padding: 10px;
+      border-radius: 22px;
+      background: linear-gradient(145deg, rgba(142,197,255,0.24), rgba(201,167,255,0.18));
+      border: 1px solid rgba(255,255,255,0.16);
     }
-
     .photo-placeholder {
       aspect-ratio: 1 / 1.15;
       border-radius: 0;
