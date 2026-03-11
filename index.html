@@ -56,19 +56,19 @@
       width: min(100%, var(--max));
       margin: 0 auto;
       display: grid;
-      grid-template-columns: 290px minmax(0, 1fr);
-      gap: 32px;
-      padding: 28px;
+      grid-template-columns: 250px minmax(0, 1fr);
+      gap: 22px;
+      padding: 20px;
       position: relative;
       z-index: 1;
     }
 
     .sidebar {
       position: sticky;
-      top: 24px;
+      top: 18px;
       align-self: start;
-      height: calc(100vh - 48px);
-      padding: 22px;
+      height: calc(100vh - 36px);
+      padding: 18px;
       border: 1px solid var(--line);
       background: rgba(8, 13, 28, 0.72);
       backdrop-filter: blur(14px);
@@ -87,7 +87,7 @@
 
     .brand h1 {
       margin: 0;
-      font-size: 1.45rem;
+      font-size: 1.2rem;
       line-height: 1.15;
       letter-spacing: -0.03em;
     }
@@ -107,7 +107,7 @@
     }
 
     .nav a {
-      padding: 14px 16px;
+      padding: 12px 14px;
       border-radius: 16px;
       color: var(--muted);
       border: 1px solid transparent;
@@ -134,12 +134,12 @@
     .content {
       display: flex;
       flex-direction: column;
-      gap: 28px;
+      gap: 20px;
     }
 
     .section {
-      min-height: 100vh;
-      padding: 34px;
+      min-height: 88vh;
+      padding: 24px 26px;
       border: 1px solid var(--line);
       border-radius: 30px;
       background: rgba(10, 16, 36, 0.68);
@@ -178,7 +178,7 @@
 
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.2fr 0.8fr;
+      grid-template-columns: 1.15fr 0.85fr;
       gap: 34px;
       align-items: center;
     }
@@ -186,22 +186,22 @@
     .hero-text h2,
     .section-title {
       margin: 0;
-      font-size: clamp(2rem, 4vw, 3.9rem);
+      font-size: clamp(1.8rem, 2.8vw, 3rem);
       line-height: 1.02;
       letter-spacing: -0.05em;
     }
 
     .hero-text h3 {
       margin: 14px 0 0;
-      font-size: 1.15rem;
+      font-size: 1rem;
       font-weight: 500;
       color: var(--accent);
     }
 
     .lead {
-      margin: 22px 0;
-      font-size: 1.06rem;
-      line-height: 1.9;
+      margin: 16px 0;
+      font-size: 0.98rem;
+      line-height: 1.75;
       color: var(--muted);
       max-width: 720px;
     }
@@ -265,13 +265,13 @@
     }
 
     .mini-card {
-      padding: 16px;
+      padding: 14px;
       text-align: center;
     }
 
     .mini-card strong {
       display: block;
-      font-size: 1.3rem;
+      font-size: 1.12rem;
       margin-bottom: 6px;
     }
 
@@ -290,7 +290,7 @@
       background: rgba(255,255,255,0.06);
       border: 1px solid rgba(255,255,255,0.1);
       border-radius: 22px;
-      padding: 22px;
+      padding: 18px;
     }
 
     .timeline-item h4,
@@ -298,7 +298,7 @@
     .contact-card h4,
     .skill-card h4 {
       margin: 0 0 8px;
-      font-size: 1.1rem;
+      font-size: 1rem;
     }
 
     .meta {
@@ -328,7 +328,7 @@
     }
 
     .skill-card {
-      padding: 22px;
+      padding: 18px;
     }
 
     .skill-card p {
@@ -365,6 +365,12 @@
       margin-top: 24px;
       color: var(--muted);
       font-size: 0.95rem;
+    }
+
+    @media (min-width: 1025px) {
+      .content {
+        max-width: 920px;
+      }
     }
 
     @media (max-width: 1024px) {
