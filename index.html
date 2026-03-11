@@ -254,17 +254,35 @@
       flex-wrap: wrap;
     }
     
-    /* .mini-card {
+/* 
+    .mini-card {
       padding: 14px 18px;
       text-align: center;
       min-width: 110px;
-    } */
-    .mini-card {
       border: 1px solid rgba(255,255,255,0.1);
       background: rgba(255,255,255,0.06);
       backdrop-filter: blur(8px);
       border-radius: 18px;
       box-shadow: var(--shadow);
+    } */
+
+    .mini-card {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+    
+      padding: 18px 22px;
+      min-width: 130px;
+    
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+    
+      background: rgba(255,255,255,0.04);
+      backdrop-filter: blur(6px);
+    
+      transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
     .mini-card strong {
@@ -612,14 +630,14 @@
           <div class="eyebrow">Contact Me</div>
           <h2 class="section-title">Let’s connect</h2>
           <p class="lead">
-            I am interested in research collaborations, academic networking, and conversations around computer vision, image aesthetics, and machine learning.
+            I am interested in collaborations, innovative projects, and professional opportunities in computer vision, image aesthetics, and machine learning, spanning both research and real-world applications.
           </p>
 
           <div class="contact-grid">
             <div class="contact-card">
               <h4>Contact Information</h4>
               <p>
-                <strong>Email:</strong> M.daryanavard.chounchenani@rug.nl<br>
+                <strong>Email:</strong> M.daryanavard@rug.nl<br>
                 <strong>Phone:</strong> (+31) 620772993<br>
                 <strong>Address:</strong> Piet Heinstraat 97, 9726JT, The Netherlands
               </p>
@@ -632,11 +650,11 @@
                 Associate Professor in Computer Science, University of Guilan, Iran<br>
                 Shahbahrami1@gmail.com
                 <br><br>
-                <strong>Prof. Dr. Ir. G.N. (Georgi) Gaydadjiev</strong><br>
+                <strong>Prof. Dr. Ir. Georgi Gaydadjiev</strong><br>
                 Full Professor in Computer Architecture, Delft University of Technology, The Netherlands<br>
                 G.N.gaydadjiev@tudelft.nl
                 <br><br>
-                <strong>Dr. R.Hassanpour </strong><br>
+                <strong>Dr. Reza Hassanpour </strong><br>
                 PhD in Computer Architecture, University of Groningen, The Netherlands<br>
                 R.zare.hassanpour@rug.nl
               </p>
