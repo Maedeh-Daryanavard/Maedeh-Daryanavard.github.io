@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <style>
     :root {
       --bg: #0b1020;
@@ -254,27 +255,17 @@
       flex-wrap: wrap;
     }
     
-/* 
-    .mini-card {
-      padding: 14px 18px;
-      text-align: center;
-      min-width: 110px;
-      border: 1px solid rgba(255,255,255,0.1);
-      background: rgba(255,255,255,0.06);
-      backdrop-filter: blur(8px);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-    } */
-
     .mini-card {
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
       gap: 6px;
-    
-      padding: 18px 22px;
-      min-width: 130px;
+      
+      box-shadow: var(--shadow);
+      
+      padding: 22px 26px;
+      min-width: 140px;
     
       border-radius: 16px;
       border: 1px solid rgba(255,255,255,0.08);
@@ -434,6 +425,45 @@
       .nav a.active {
         transform: none;
       }
+    }
+
+    .contact-links {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 14px;
+      margin-top: 22px;
+    }
+    
+    .contact-link {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      text-decoration: none;
+      color: #f4f7ff;
+      border: 1px solid rgba(255,255,255,0.10);
+      background: rgba(255,255,255,0.05);
+      border-radius: 16px;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+    
+    .contact-link i {
+      font-size: 1.2rem;
+      width: 22px;
+      text-align: center;
+      color: var(--accent);
+    }
+    
+    .contact-link span {
+      font-size: 0.96rem;
+      font-weight: 600;
+      color: #ffffff;
+    }
+    
+    .contact-link:hover {
+      transform: translateY(-3px);
+      border-color: rgba(127,184,255,0.35);
+      background: rgba(255,255,255,0.08);
     }
   </style>
 </head>
@@ -661,8 +691,54 @@
             </div>
           </div>
 
-          <p class="footer-note">
-            Tip: upload your image as <strong>profile.jpg</strong> in the same repository folder to show your photo in the Home section.
+          <div class="timeline-item">
+            <h4>Professional Profiles</h4>
+            <p class="muted">
+              You can find me on the following professional and academic platforms.
+            </p>
+          
+            <div class="contact-links">
+              <a href="https://www.linkedin.com/in/YOUR-LINKEDIN/" target="_blank" class="contact-link">
+                <i class="fa-brands fa-linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+          
+              <a href="https://nl.linkedin.com/in/maedeh-daryanavard-chounchenani-810981136" target="_blank" class="contact-link">
+                <i class="fa-brands fa-linkedin"></i>
+                <span>LinkedIn</span>
+              </a>
+            
+              <a href="https://github.com/Maedeh-Daryanavard/" target="_blank" class="contact-link">
+                <i class="fa-brands fa-github"></i>
+                <span>GitHub</span>
+              </a>
+            
+              <a href="https://scholar.google.com/citations?hl=en&user=2ib95D0AAAAJ" target="_blank" class="contact-link">
+                <i class="fa-solid fa-graduation-cap"></i>
+                <span>Google Scholar</span>
+              
+              </a>
+  
+              
+              <a href="https://www.rug.nl/staff/m.daryanavard/?lang=en" target="_blank" class="contact-link">
+                <i class="fa-brands fa-MD"></i>
+                <span>Maedeh-Daryanavard</span>
+              </a>
+  
+              
+              <a href="https://orcid.org/0009-0009-3892-7016" target="_blank" class="contact-link">
+                <i class="fa-brands fa-orcid"></i>
+                <span>ORCID</span>
+              </a>
+            
+              <a href="https://www.researchgate.net/profile/Maedeh-Daryanavard" target="_blank" class="contact-link">
+                <i class="fa-brands fa-researchgate"></i>
+                <span>ResearchGate</span>
+              </a>
+            </div>
+          </div>
+
+           
           </p>
         </div>
       </section>
