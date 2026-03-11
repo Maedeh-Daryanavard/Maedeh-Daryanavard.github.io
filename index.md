@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Maedeh Daryanavard Chounchenani</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-soft: #111936;
+      --card: rgba(255,255,255,0.08);
+      --card-strong: rgba(255,255,255,0.12);
+      --text: #eaf1ff;
+      --muted: #b7c3e0;
+      --accent: #8ec5ff;
+      --accent-2: #c9a7ff;
+      --line: rgba(255,255,255,0.14);
+      --shadow: 0 20px 60px rgba(0,0,0,0.35);
+      --radius: 24px;
+      --max: 1200px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(142,197,255,0.18), transparent 28%),
+        radial-gradient(circle at top right, rgba(201,167,255,0.18), transparent 25%),
+        linear-gradient(180deg, #070b16 0%, #0b1020 55%, #0e1530 100%);
+      overflow-x: hidden;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.08));
+      z-index: 0;
+    }
+
+    a { color: inherit; text-decoration: none; }
+    img { max-width: 100%; display: block; }
+
+    .layout {
+      width: min(100%, var(--max));
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 290px minmax(0, 1fr);
+      gap: 32px;
+      padding: 28px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .sidebar {
+      position: sticky;
+      top: 24px;
+      align-self: start;
+      height: calc(100vh - 48px);
+      padding: 22px;
+      border: 1px solid var(--line);
+      background: rgba(8, 13, 28, 0.72);
+      backdrop-filter: blur(14px);
+      border-radius: 28px;
+      box-shadow: var(--shadow);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    .brand {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .brand h1 {
+      margin: 0;
+      font-size: 1.45rem;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+    }
+
+    .brand p {
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.6;
+    }
+
+    .nav {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      margin-top: 28px;
+    }
+
+    .nav a {
+      padding: 14px 16px;
+      border-radius: 16px;
+      color: var(--muted);
+      border: 1px solid transparent;
+      transition: 0.25s ease;
+      font-weight: 600;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      color: var(--text);
+      background: linear-gradient(135deg, rgba(142,197,255,0.16), rgba(201,167,255,0.12));
+      border-color: rgba(255,255,255,0.1);
+      transform: translateX(4px);
+    }
+
+    .sidebar-footer {
+      border-top: 1px solid var(--line);
+      padding-top: 18px;
+      color: var(--muted);
+      font-size: 0.88rem;
+      line-height: 1.7;
+    }
+
+    .content {
+      display: flex;
+      flex-direction: column;
+      gap: 28px;
+    }
+
+    .section {
+      min-height: 100vh;
+      padding: 34px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
+      background: rgba(10, 16, 36, 0.68);
+      backdrop-filter: blur(10px);
+      box-shadow: var(--shadow);
+      display: flex;
+      align-items: center;
+      opacity: 0;
+      transform: translateY(50px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+
+    .section.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .section-inner {
+      width: 100%;
+    }
+
+    .eyebrow {
+      display: inline-flex;
+      gap: 8px;
+      align-items: center;
+      padding: 8px 14px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.08);
+      color: var(--accent);
+      font-size: 0.86rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      margin-bottom: 18px;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 34px;
+      align-items: center;
+    }
+
+    .hero-text h2,
+    .section-title {
+      margin: 0;
+      font-size: clamp(2rem, 4vw, 3.9rem);
+      line-height: 1.02;
+      letter-spacing: -0.05em;
+    }
+
+    .hero-text h3 {
+      margin: 14px 0 0;
+      font-size: 1.15rem;
+      font-weight: 500;
+      color: var(--accent);
+    }
+
+    .lead {
+      margin: 22px 0;
+      font-size: 1.06rem;
+      line-height: 1.9;
+      color: var(--muted);
+      max-width: 720px;
+    }
+
+    .interest-tags,
+    .skills-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .tag,
+    .skill-card,
+    .mini-card {
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.06);
+      backdrop-filter: blur(8px);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+
+    .tag {
+      padding: 10px 14px;
+      font-weight: 600;
+      color: #dfe8ff;
+    }
+
+    .hero-photo {
+      position: relative;
+    }
+
+    .photo-frame {
+      padding: 14px;
+      border-radius: 32px;
+      background: linear-gradient(145deg, rgba(142,197,255,0.24), rgba(201,167,255,0.18));
+      border: 1px solid rgba(255,255,255,0.16);
+    }
+
+    .photo-placeholder {
+      aspect-ratio: 4 / 5;
+      border-radius: 24px;
+      overflow: hidden;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.06), rgba(255,255,255,0.02)),
+        url('profile.jpg') center/cover no-repeat,
+        linear-gradient(135deg, #1a2748, #10182f);
+      display: flex;
+      align-items: end;
+      justify-content: start;
+      padding: 18px;
+      color: rgba(255,255,255,0.82);
+      font-size: 0.92rem;
+    }
+
+    .stats {
+      margin-top: 20px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .mini-card {
+      padding: 16px;
+      text-align: center;
+    }
+
+    .mini-card strong {
+      display: block;
+      font-size: 1.3rem;
+      margin-bottom: 6px;
+    }
+
+    .timeline {
+      position: relative;
+      margin-top: 28px;
+      padding-left: 22px;
+      border-left: 2px solid rgba(142,197,255,0.28);
+      display: grid;
+      gap: 20px;
+    }
+
+    .timeline-item,
+    .publication-card,
+    .contact-card {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 22px;
+      padding: 22px;
+    }
+
+    .timeline-item h4,
+    .publication-card h4,
+    .contact-card h4,
+    .skill-card h4 {
+      margin: 0 0 8px;
+      font-size: 1.1rem;
+    }
+
+    .meta {
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .muted {
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .publications,
+    .contact-grid {
+      display: grid;
+      gap: 18px;
+      margin-top: 28px;
+    }
+
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 18px;
+      margin-top: 26px;
+    }
+
+    .skill-card {
+      padding: 22px;
+    }
+
+    .skill-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.8;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 22px;
+      margin-top: 28px;
+    }
+
+    .list-clean {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+      line-height: 1.9;
+    }
+
+    .contact-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .contact-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.85;
+    }
+
+    .footer-note {
+      margin-top: 24px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 1024px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .sidebar {
+        position: relative;
+        top: 0;
+        height: auto;
+      }
+
+      .hero-grid,
+      .two-col,
+      .contact-grid,
+      .skills-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .layout {
+        padding: 16px;
+        gap: 18px;
+      }
+
+      .section,
+      .sidebar {
+        padding: 20px;
+        border-radius: 24px;
+      }
+
+      .stats {
+        grid-template-columns: 1fr;
+      }
+
+      .nav a:hover,
+      .nav a.active {
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="layout">
+    <aside class="sidebar">
+      <div>
+        <div class="brand">
+          <p>Academic Portfolio</p>
+          <h1>Maedeh Daryanavard Chounchenani</h1>
+          <p>Computer Science Researcher and Computer Vision Enthusiast</p>
+        </div>
+
+        <nav class="nav">
+          <a href="#home" class="active">Home</a>
+          <a href="#experience">Experiences</a>
+          <a href="#contributions">Scientific Contributions</a>
+          <a href="#contact">Contact Me</a>
+        </nav>
+      </div>
+
+      <div class="sidebar-footer">
+        University of Groningen<br />
+        Ph.D. in Computer Science<br />
+        2023–2027 (expected)
+      </div>
+    </aside>
+
+    <main class="content">
+      <section id="home" class="section visible">
+        <div class="section-inner hero-grid">
+          <div class="hero-text">
+            <div class="eyebrow">Home</div>
+            <h2>Researching how machines understand image quality and aesthetics.</h2>
+            <h3>Doctoral Researcher · University of Groningen</h3>
+            <p class="lead">
+              I am <strong>Maedeh Daryanavard Chounchenani</strong>, a Computer Science researcher with a strong interest in <strong>Computer Vision</strong>, <strong>Image Quality Assessment</strong>, and <strong>Image Aesthetic Analysis</strong>. My current Ph.D. research focuses on <strong>Semantic Image Aesthetic Quality Assessment</strong>, investigating intelligent methods for understanding how image content, attributes, and scene semantics influence aesthetic perception.
+            </p>
+            <div class="interest-tags">
+              <span class="tag">Computer Vision</span>
+              <span class="tag">Image Quality Assessment</span>
+              <span class="tag">Image Aesthetics</span>
+              <span class="tag">Deep Learning</span>
+              <span class="tag">Semantic Analysis</span>
+            </div>
+
+            <div class="two-col">
+              <div class="timeline-item">
+                <h4>Education</h4>
+                <span class="meta">Ph.D. in Computer Science · 2023–2027 (expected)</span>
+                <p class="muted">Science and Engineering, University of Groningen, The Netherlands<br>Supervisor: Prof. Dr. Ir. G.N. (Georgi) Gaydadjiev<br>Project: Semantic Image Aesthetic Quality Assessment</p>
+              </div>
+              <div class="timeline-item">
+                <h4>Previous Degrees</h4>
+                <p class="muted">
+                  <strong>Master’s Degree, Computer Engineering</strong> · 2016–2018<br>
+                  University of Lahijan, Iran<br>
+                  Thesis: Non-distortion-specific no-reference Image Quality Assessment using Statistical Features<br>
+                  GPA: 19.14/20
+                  <br><br>
+                  <strong>Bachelor’s Degree, Computer Engineering</strong> · 2010–2014<br>
+                  University of Lahijan, Iran<br>
+                  Thesis: Design and Development of Clinic Information System<br>
+                  GPA: 15.85/20
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="hero-photo">
+            <div class="photo-frame">
+              <div class="photo-placeholder">Replace this with your own image: <strong style="margin-left:6px;">profile.jpg</strong></div>
+            </div>
+            <div class="stats">
+              <div class="mini-card"><strong>3</strong><span>Publications</span></div>
+              <div class="mini-card"><strong>2</strong><span>Awards</span></div>
+              <div class="mini-card"><strong>15+</strong><span>Years Experience</span></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="experience" class="section">
+        <div class="section-inner">
+          <div class="eyebrow">Experiences</div>
+          <h2 class="section-title">Professional journey and academic experience</h2>
+          <p class="lead">
+            My experience combines long-term teaching practice with doctoral-level research in image analysis, computational aesthetics, and machine learning.
+          </p>
+
+          <div class="timeline">
+            <div class="timeline-item">
+              <h4>Doctoral Researcher · Bernoulli Institute</h4>
+              <span class="meta">Full-time · University of Groningen · 2023–Present</span>
+              <p class="muted">
+                Conducting research on image aesthetics and computational analysis of visual content under the supervision of Prof. Dr. Ir. G.N. (Georgi) Gaydadjiev. The work focuses on semantic image aesthetic quality assessment and interpretable approaches to understanding aesthetic perception.
+              </p>
+            </div>
+
+            <div class="timeline-item">
+              <h4>Teacher · Shahresabz School</h4>
+              <span class="meta">Full-time · Lahijan, Guilan, Iran · 2008–2022</span>
+              <p class="muted">
+                Worked as a full-time teacher for many years, building strong communication, mentoring, and instructional skills alongside technical and academic development.
+              </p>
+            </div>
+          </div>
+
+          <div class="skills-grid">
+            <div class="skill-card">
+              <h4>Software & Programming</h4>
+              <p>Python, MATLAB, MySQL, Microsoft Access</p>
+            </div>
+            <div class="skill-card">
+              <h4>Computer Vision</h4>
+              <p>OpenCV, Scikit-image, Vision Transformer</p>
+            </div>
+            <div class="skill-card">
+              <h4>Machine Learning</h4>
+              <p>Keras, PyTorch, TensorFlow, Scikit-learn, Pandas</p>
+            </div>
+            <div class="skill-card">
+              <h4>Other Tools</h4>
+              <p>Adobe Photoshop, Illustrator, Corel Draw, Freehand MX, GIS</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contributions" class="section">
+        <div class="section-inner">
+          <div class="eyebrow">Scientific Contributions</div>
+          <h2 class="section-title">Publications, awards, and academic highlights</h2>
+          <p class="lead">
+            My scientific work centers on image quality assessment, computational aesthetics, and deep learning methods for visual understanding.
+          </p>
+
+          <div class="publications">
+            <div class="publication-card">
+              <h4>Non-distortion-specific no-reference image quality assessment using Statistical Features</h4>
+              <span class="meta">Journal of Signal and Data Processing · 2021</span>
+              <p class="muted">Research on no-reference image quality assessment using statistical features for quality prediction without distortion-specific assumptions.</p>
+            </div>
+
+            <div class="publication-card">
+              <h4>Deep learning based image aesthetic quality assessment – a review</h4>
+              <span class="meta">Journal of the Association for Computing Machinery (ACM) · 2025</span>
+              <p class="muted">A review of deep learning approaches for image aesthetic quality assessment, summarizing datasets, models, and open research directions.</p>
+            </div>
+
+            <div class="publication-card">
+              <h4>Do scenes matter? analyzing scene-aware attribute learning for image aesthetics</h4>
+              <span class="meta">International Congress on Information and Communication Technology and Excellence Awards · 2026</span>
+              <p class="muted">An investigation into the role of scene-aware attribute learning in aesthetic prediction and semantic understanding of visual quality.</p>
+            </div>
+          </div>
+
+          <div class="two-col">
+            <div class="timeline-item">
+              <h4>Awards</h4>
+              <ul class="list-clean">
+                <li>Best Student Researcher, Department of Computer Engineering, University of Lahijan, Iran · 2018</li>
+                <li>Highest GPA among Computer Engineering students of the 2016 class, University of Lahijan, Iran · 2018</li>
+              </ul>
+            </div>
+            <div class="timeline-item">
+              <h4>Research Focus</h4>
+              <ul class="list-clean">
+                <li>Image Aesthetic Quality Assessment</li>
+                <li>No-reference Image Quality Assessment</li>
+                <li>Scene-aware Aesthetic Analysis</li>
+                <li>Deep Learning for Visual Perception</li>
+                <li>Semantic Understanding of Image Content</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact" class="section">
+        <div class="section-inner">
+          <div class="eyebrow">Contact Me</div>
+          <h2 class="section-title">Let’s connect</h2>
+          <p class="lead">
+            I am interested in research collaborations, academic networking, and conversations around computer vision, image aesthetics, and machine learning.
+          </p>
+
+          <div class="contact-grid">
+            <div class="contact-card">
+              <h4>Contact Information</h4>
+              <p>
+                <strong>Email:</strong> M.daryanavard.chounchenani@rug.nl<br>
+                <strong>Phone:</strong> (+31) 620772993<br>
+                <strong>Address:</strong> Piet Heinstraat 97, 9726JT, The Netherlands
+              </p>
+            </div>
+
+            <div class="contact-card">
+              <h4>References</h4>
+              <p>
+                <strong>Prof. Asadollah Shahbahrami</strong><br>
+                Associate Professor, University of Guilan, Iran<br>
+                shahbahrami1@gmail.com
+                <br><br>
+                <strong>Prof. Dr. Ir. G.N. (Georgi) Gaydadjiev</strong><br>
+                Full Professor in Computer Architecture, Delft University of Technology, The Netherlands<br>
+                G.N.gaydadjiev@tudelft.nl
+              </p>
+            </div>
+          </div>
+
+          <p class="footer-note">
+            Tip: upload your image as <strong>profile.jpg</strong> in the same repository folder to show your photo in the Home section.
+          </p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const sections = document.querySelectorAll('.section');
+    const navLinks = document.querySelectorAll('.nav a');
+
+    const revealObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.18 });
+
+    sections.forEach(section => revealObserver.observe(section));
+
+    const navObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          navLinks.forEach(link => link.classList.remove('active'));
+          const activeLink = document.querySelector(`.nav a[href="#${entry.target.id}"]`);
+          if (activeLink) activeLink.classList.add('active');
+        }
+      });
+    }, { threshold: 0.45 });
+
+    sections.forEach(section => navObserver.observe(section));
+  </script>
+</body>
+</html>
