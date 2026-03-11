@@ -68,16 +68,41 @@
       top: 18px;
       align-self: start;
       height: calc(100vh - 36px);
-      padding: 18px;
+      padding: 20px;
       border: 1px solid var(--line);
-      background: rgba(8, 13, 28, 0.72);
+      background: rgba(8, 13, 28, 0.78);
       backdrop-filter: blur(14px);
       border-radius: 28px;
       box-shadow: var(--shadow);
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      gap: 20px;
     }
+    .sidebar-photo {
+      margin-top: 18px;
+      margin-bottom: 18px;
+      display: flex;
+      justify-content: center;
+    }
+    
+    .sidebar-photo-frame {
+      width: 100%;
+      max-width: 190px;
+      padding: 8px;
+      border-radius: 24px;
+      background: linear-gradient(145deg, rgba(142,197,255,0.18), rgba(201,167,255,0.14));
+      border: 1px solid rgba(255,255,255,0.12);
+      box-shadow: var(--shadow);
+    }
+    
+    .sidebar-profile-img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+      display: block;
+      border-radius: 18px;
+    }  
 
     .brand {
       display: flex;
@@ -103,7 +128,7 @@
       display: flex;
       flex-direction: column;
       gap: 10px;
-      margin-top: 28px;
+      margin-top: 18px;
     }
 
     .nav a {
@@ -138,8 +163,9 @@
     }
 
     .section {
-      min-height: 88vh;
-      padding: 24px 26px;
+      
+      min-height: auto;
+      padding: 36px 40px;
       border: 1px solid var(--line);
       border-radius: 30px;
       background: rgba(10, 16, 36, 0.68);
@@ -176,12 +202,12 @@
       margin-bottom: 18px;
     }
 
-    .hero-grid {
+    /* .hero-grid {
       display: grid;
       grid-template-columns: 1.4fr 0.6fr;
       gap: 40px;
       align-items: center;
-    }
+    } */
 
 
     .hero-text h2,
@@ -235,12 +261,12 @@
     }
 
     /* limit photo size */
-    .hero-photo {
+    /* .hero-photo {
       max-width: 320px;
       margin-left: auto;
-    }
+    } */
 
-    .photo-frame {
+    /* .photo-frame {
       padding: 10px;
       border-radius: 26px;
       background: linear-gradient(145deg, rgba(142,197,255,0.18), rgba(201,167,255,0.14));
@@ -256,7 +282,7 @@
       background:
         url('profile.jpg') center/cover no-repeat,
         linear-gradient(135deg,#1a2748,#10182f);
-    }
+    } */
 
     .stats {
       margin-top: 26px;
@@ -432,7 +458,13 @@
           <h1>Maedeh Daryanavard Chounchenani</h1>
           <p>Computer Science Researcher and Computer Vision Enthusiast</p>
         </div>
-
+    
+        <div class="sidebar-photo">
+          <div class="sidebar-photo-frame">
+            <img src="profile.jpg" alt="Maedeh Daryanavard Chounchenani" class="sidebar-profile-img" />
+          </div>
+        </div>
+    
         <nav class="nav">
           <a href="#home" class="active">Home</a>
           <a href="#experience">Experiences</a>
@@ -440,7 +472,7 @@
           <a href="#contact">Contact Me</a>
         </nav>
       </div>
-
+    
       <div class="sidebar-footer">
         University of Groningen<br />
         Ph.D. in Computer Science<br />
@@ -450,14 +482,20 @@
 
     <main class="content">
       <section id="home" class="section visible">
-        <div class="section-inner hero-grid">
+        <div class="section-inner">
           <div class="hero-text">
             <div class="eyebrow">Home</div>
             <h2>Researching how machines understand image quality and aesthetics.</h2>
             <h3>Doctoral Researcher · University of Groningen</h3>
+      
             <p class="lead">
-              I am <strong>Maedeh Daryanavard Chounchenani</strong>, a Computer Science researcher with a strong interest in <strong>Computer Vision</strong>, <strong>Image Quality Assessment</strong>, and <strong>Image Aesthetic Analysis</strong>. My current Ph.D. research focuses on <strong>Semantic Image Aesthetic Quality Assessment</strong>, investigating intelligent methods for understanding how image content, attributes, and scene semantics influence aesthetic perception.
+              I am <strong>Maedeh Daryanavard Chounchenani</strong>, a Computer Science researcher with a strong interest in
+              <strong>Computer Vision</strong>, <strong>Image Quality Assessment</strong>, and
+              <strong>Image Aesthetic Analysis</strong>. My current Ph.D. research focuses on
+              <strong>Semantic Image Aesthetic Quality Assessment</strong>, investigating intelligent methods for understanding
+              how image content, attributes, and scene semantics influence aesthetic perception.
             </p>
+      
             <div class="interest-tags">
               <span class="tag">Computer Vision</span>
               <span class="tag">Image Quality Assessment</span>
@@ -465,13 +503,24 @@
               <span class="tag">Deep Learning</span>
               <span class="tag">Semantic Analysis</span>
             </div>
-
+      
+            <div class="stats">
+              <div class="mini-card"><strong>3</strong><span>Publications</span></div>
+              <div class="mini-card"><strong>2</strong><span>Awards</span></div>
+              <div class="mini-card"><strong>15+</strong><span>Years Experience</span></div>
+            </div>
+      
             <div class="two-col">
               <div class="timeline-item">
                 <h4>Education</h4>
                 <span class="meta">Ph.D. in Computer Science · 2023–2027 (expected)</span>
-                <p class="muted">Science and Engineering, University of Groningen, The Netherlands<br>Supervisor: Prof. Dr. Ir. G.N. (Georgi) Gaydadjiev<br>Project: Semantic Image Aesthetic Quality Assessment</p>
+                <p class="muted">
+                  Science and Engineering, University of Groningen, The Netherlands<br>
+                  Supervisor: Prof. Dr. Ir. G.N. (Georgi) Gaydadjiev<br>
+                  Project: Semantic Image Aesthetic Quality Assessment
+                </p>
               </div>
+      
               <div class="timeline-item">
                 <h4>Previous Degrees</h4>
                 <p class="muted">
@@ -488,6 +537,8 @@
               </div>
             </div>
           </div>
+        </div>
+      </section>
 
           <div class="hero-photo">
             <div class="photo-frame">
