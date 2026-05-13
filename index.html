@@ -9,6 +9,75 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
   <style>
+    .navbar {
+      width: min(100%, var(--max));
+      margin: 20px auto 0;
+      padding: 14px 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 20;
+    
+      background: rgba(8, 13, 28, 0.78);
+      border: 1px solid var(--line);
+      border-radius: 22px;
+      backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+    }
+    
+    .logo {
+      font-weight: 800;
+      color: var(--text);
+    }
+    
+    .nav-links {
+      display: flex;
+      gap: 18px;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    
+    .nav-links a {
+      color: var(--muted);
+      font-weight: 600;
+      padding: 10px 14px;
+      border-radius: 14px;
+      transition: 0.25s ease;
+    }
+    
+    .nav-links a:hover {
+      color: var(--text);
+      background: linear-gradient(135deg, rgba(142,197,255,0.16), rgba(201,167,255,0.12));
+    }
+    
+    .dropdown {
+      position: relative;
+    }
+    
+    .dropdown-menu {
+      display: none;
+      position: absolute;
+      top: 42px;
+      right: 0;
+      min-width: 230px;
+      padding: 10px;
+      list-style: none;
+    
+      background: rgba(8, 13, 28, 0.95);
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+    }
+    
+    .dropdown:hover .dropdown-menu {
+      display: block;
+    }
+    
+    .dropdown-menu a {
+      display: block;
+    }
     :root {
       --bg: #0b1020;
       --bg-soft: #111936;
