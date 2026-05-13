@@ -1,32 +1,428 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Basic Image Processing</title>
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
+<!-- ========================================================
+     IMAGE PROCESSING SECTION — paste inside your <main> tag
+     ======================================================== -->
 
-  <nav class="navbar">
-    <a href="index.html" class="logo">My Portfolio</a>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Syne:wght@600;800&display=swap');
 
-    <ul class="nav-links">
-      <li><a href="index.html">Resume</a></li>
+  .ip-root {
+    --ip-bg:        #0e0e0f;
+    --ip-surface:   #17171a;
+    --ip-border:    #2a2a2f;
+    --ip-accent:    #c8ff57;
+    --ip-accent2:   #57c8ff;
+    --ip-text:      #f0f0ee;
+    --ip-muted:     #6b6b74;
+    --ip-radius:    10px;
+    --ip-font-head: 'Syne', sans-serif;
+    --ip-font-mono: 'DM Mono', monospace;
 
-      <li class="dropdown">
-        <a href="#">My Work ▾</a>
-        <ul class="dropdown-menu">
-          <li><a href="image-processing.html">Basic Image Processing</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
+    font-family: var(--ip-font-mono);
+    background: var(--ip-bg);
+    color: var(--ip-text);
+    padding: 3rem 1.5rem;
+    min-height: 100vh;
+    box-sizing: border-box;
+  }
 
-  <main>
-    <h1>Basic Image Processing</h1>
-    <p>This page will contain my image processing demo.</p>
+  /* ── Header ─────────────────────────────────────────────── */
+  .ip-header {
+    margin-bottom: 2.5rem;
+  }
+  .ip-header h2 {
+    font-family: var(--ip-font-head);
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    margin: 0 0 .4rem;
+    line-height: 1;
+  }
+  .ip-header h2 span { color: var(--ip-accent); }
+  .ip-header p {
+    color: var(--ip-muted);
+    font-size: .8rem;
+    margin: 0;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
 
-    <!-- Later, paste Claude's image processing code here -->
-  </main>
+  /* ── Upload zone ─────────────────────────────────────────── */
+  .ip-upload-zone {
+    position: relative;
+    border: 1.5px dashed var(--ip-border);
+    border-radius: var(--ip-radius);
+    padding: 3rem 2rem;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color .25s, background .25s;
+    background: var(--ip-surface);
+    margin-bottom: 1.5rem;
+  }
+  .ip-upload-zone:hover,
+  .ip-upload-zone.drag-over {
+    border-color: var(--ip-accent);
+    background: #1a1f12;
+  }
+  .ip-upload-zone input[type="file"] {
+    position: absolute; inset: 0;
+    opacity: 0; cursor: pointer;
+    width: 100%; height: 100%;
+  }
+  .ip-upload-icon {
+    font-size: 2.2rem;
+    margin-bottom: .6rem;
+    display: block;
+    filter: grayscale(1);
+    transition: filter .25s;
+  }
+  .ip-upload-zone:hover .ip-upload-icon { filter: none; }
+  .ip-upload-label {
+    font-family: var(--ip-font-head);
+    font-size: 1rem;
+    font-weight: 600;
+    display: block;
+    margin-bottom: .3rem;
+  }
+  .ip-upload-hint {
+    font-size: .72rem;
+    color: var(--ip-muted);
+    text-transform: uppercase;
+    letter-spacing: .08em;
+  }
 
-</body>
-</html>
+  /* ── Canvas area ─────────────────────────────────────────── */
+  .ip-canvas-wrap {
+    display: none;
+    position: relative;
+    background: var(--ip-surface);
+    border: 1.5px solid var(--ip-border);
+    border-radius: var(--ip-radius);
+    overflow: hidden;
+    margin-bottom: 1.5rem;
+    aspect-ratio: auto;
+    min-height: 220px;
+    align-items: center;
+    justify-content: center;
+  }
+  .ip-canvas-wrap.visible { display: flex; }
+  .ip-canvas-wrap canvas {
+    display: block;
+    max-width: 100%;
+    max-height: 65vh;
+    object-fit: contain;
+    border-radius: 4px;
+  }
+  .ip-canvas-badge {
+    position: absolute;
+    top: .8rem; right: .8rem;
+    background: rgba(14,14,15,.85);
+    border: 1px solid var(--ip-border);
+    border-radius: 4px;
+    padding: .25rem .55rem;
+    font-size: .68rem;
+    color: var(--ip-muted);
+    letter-spacing: .05em;
+    backdrop-filter: blur(6px);
+  }
+
+  /* ── Controls ────────────────────────────────────────────── */
+  .ip-controls {
+    display: grid;
+    gap: 1.2rem;
+    margin-bottom: 1.5rem;
+  }
+
+  /* Sliders */
+  .ip-slider-group { display: grid; gap: .8rem; }
+  .ip-slider-row {
+    background: var(--ip-surface);
+    border: 1px solid var(--ip-border);
+    border-radius: var(--ip-radius);
+    padding: .85rem 1rem;
+    display: grid;
+    grid-template-columns: 90px 1fr 44px;
+    align-items: center;
+    gap: .75rem;
+    transition: border-color .2s;
+  }
+  .ip-slider-row:hover { border-color: var(--ip-accent); }
+  .ip-slider-label {
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    color: var(--ip-muted);
+  }
+  .ip-slider-val {
+    text-align: right;
+    font-size: .78rem;
+    color: var(--ip-accent);
+    min-width: 38px;
+  }
+  input[type="range"] {
+    -webkit-appearance: none;
+    width: 100%;
+    height: 3px;
+    background: var(--ip-border);
+    border-radius: 99px;
+    outline: none;
+    cursor: pointer;
+    accent-color: var(--ip-accent);
+  }
+  input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--ip-accent);
+    box-shadow: 0 0 0 3px rgba(200,255,87,.15);
+    cursor: pointer;
+    transition: box-shadow .2s;
+  }
+  input[type="range"]::-webkit-slider-thumb:hover {
+    box-shadow: 0 0 0 6px rgba(200,255,87,.25);
+  }
+
+  /* Toggle buttons */
+  .ip-toggle-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: .6rem;
+  }
+  .ip-toggle {
+    font-family: var(--ip-font-mono);
+    font-size: .72rem;
+    text-transform: uppercase;
+    letter-spacing: .09em;
+    border: 1.5px solid var(--ip-border);
+    background: var(--ip-surface);
+    color: var(--ip-text);
+    border-radius: 6px;
+    padding: .5rem 1rem;
+    cursor: pointer;
+    transition: border-color .2s, background .2s, color .2s;
+    position: relative;
+    overflow: hidden;
+  }
+  .ip-toggle:hover { border-color: var(--ip-accent2); color: var(--ip-accent2); }
+  .ip-toggle.active {
+    border-color: var(--ip-accent2);
+    background: rgba(87,200,255,.12);
+    color: var(--ip-accent2);
+  }
+
+  /* Action buttons */
+  .ip-actions { display: flex; gap: .7rem; flex-wrap: wrap; }
+  .ip-btn {
+    font-family: var(--ip-font-mono);
+    font-size: .75rem;
+    text-transform: uppercase;
+    letter-spacing: .1em;
+    border: none;
+    border-radius: 7px;
+    padding: .65rem 1.4rem;
+    cursor: pointer;
+    transition: opacity .2s, transform .1s;
+  }
+  .ip-btn:active { transform: scale(.97); }
+  .ip-btn-reset {
+    background: var(--ip-border);
+    color: var(--ip-muted);
+  }
+  .ip-btn-reset:hover { opacity: .8; }
+  .ip-btn-download {
+    background: var(--ip-accent);
+    color: #0e0e0f;
+    font-weight: 500;
+  }
+  .ip-btn-download:hover { opacity: .85; }
+  .ip-btn:disabled { opacity: .35; cursor: not-allowed; }
+</style>
+
+<section class="ip-root" id="ip-section">
+
+  <!-- Header -->
+  <div class="ip-header">
+    <h2>Image <span>Processing</span></h2>
+    <p>Upload · Adjust · Export</p>
+  </div>
+
+  <!-- Upload zone -->
+  <div class="ip-upload-zone" id="ip-drop-zone">
+    <input type="file" id="ip-file-input" accept="image/*">
+    <span class="ip-upload-icon">🖼</span>
+    <span class="ip-upload-label">Drop an image or click to browse</span>
+    <span class="ip-upload-hint">PNG · JPG · WebP · GIF</span>
+  </div>
+
+  <!-- Canvas preview -->
+  <div class="ip-canvas-wrap" id="ip-canvas-wrap">
+    <canvas id="ip-canvas"></canvas>
+    <span class="ip-canvas-badge" id="ip-badge">—</span>
+  </div>
+
+  <!-- Controls (hidden until image loaded) -->
+  <div class="ip-controls" id="ip-controls" style="display:none">
+
+    <!-- Sliders -->
+    <div class="ip-slider-group">
+      <div class="ip-slider-row">
+        <span class="ip-slider-label">Brightness</span>
+        <input type="range" id="ip-brightness" min="0" max="300" value="100" step="1">
+        <span class="ip-slider-val" id="ip-brightness-val">100%</span>
+      </div>
+      <div class="ip-slider-row">
+        <span class="ip-slider-label">Blur</span>
+        <input type="range" id="ip-blur" min="0" max="20" value="0" step="0.5">
+        <span class="ip-slider-val" id="ip-blur-val">0px</span>
+      </div>
+    </div>
+
+    <!-- Toggle effects -->
+    <div class="ip-toggle-group">
+      <button class="ip-toggle" id="ip-toggle-grayscale">Grayscale</button>
+      <button class="ip-toggle" id="ip-toggle-invert">Invert</button>
+    </div>
+
+    <!-- Action buttons -->
+    <div class="ip-actions">
+      <button class="ip-btn ip-btn-reset" id="ip-reset">Reset all</button>
+      <button class="ip-btn ip-btn-download" id="ip-download">↓ Download</button>
+    </div>
+
+  </div>
+</section>
+
+<script>
+(function () {
+  // ── State ──────────────────────────────────────────────────
+  const state = {
+    brightness: 100,
+    blur:       0,
+    grayscale:  false,
+    invert:     false,
+  };
+  let originalImage = null;
+
+  // ── DOM refs ───────────────────────────────────────────────
+  const dropZone   = document.getElementById('ip-drop-zone');
+  const fileInput  = document.getElementById('ip-file-input');
+  const canvasWrap = document.getElementById('ip-canvas-wrap');
+  const canvas     = document.getElementById('ip-canvas');
+  const ctx        = canvas.getContext('2d');
+  const badge      = document.getElementById('ip-badge');
+  const controls   = document.getElementById('ip-controls');
+
+  const bSlider    = document.getElementById('ip-brightness');
+  const blurSlider = document.getElementById('ip-blur');
+  const bVal       = document.getElementById('ip-brightness-val');
+  const blurVal    = document.getElementById('ip-blur-val');
+
+  const btnGray    = document.getElementById('ip-toggle-grayscale');
+  const btnInvert  = document.getElementById('ip-toggle-invert');
+  const btnReset   = document.getElementById('ip-reset');
+  const btnDl      = document.getElementById('ip-download');
+
+  // ── Load image ─────────────────────────────────────────────
+  function loadFile(file) {
+    if (!file || !file.type.startsWith('image/')) return;
+    const reader = new FileReader();
+    reader.onload = e => {
+      const img = new Image();
+      img.onload = () => {
+        originalImage = img;
+        canvas.width  = img.naturalWidth;
+        canvas.height = img.naturalHeight;
+        resetState();
+        canvasWrap.classList.add('visible');
+        controls.style.display = 'grid';
+        badge.textContent = `${img.naturalWidth} × ${img.naturalHeight}`;
+        applyFilters();
+      };
+      img.src = e.target.result;
+    };
+    reader.readAsDataURL(file);
+  }
+
+  // ── Apply CSS filter pipeline ──────────────────────────────
+  function applyFilters() {
+    if (!originalImage) return;
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+    const filters = [
+      `brightness(${state.brightness}%)`,
+      `blur(${state.blur}px)`,
+      state.grayscale ? 'grayscale(100%)' : '',
+      state.invert    ? 'invert(100%)'    : '',
+    ].filter(Boolean).join(' ');
+
+    ctx.filter = filters || 'none';
+    ctx.drawImage(originalImage, 0, 0);
+  }
+
+  // ── Reset ──────────────────────────────────────────────────
+  function resetState() {
+    state.brightness = 100;
+    state.blur       = 0;
+    state.grayscale  = false;
+    state.invert     = false;
+
+    bSlider.value    = 100;
+    blurSlider.value = 0;
+    bVal.textContent    = '100%';
+    blurVal.textContent = '0px';
+
+    btnGray.classList.remove('active');
+    btnInvert.classList.remove('active');
+  }
+
+  // ── Slider events ──────────────────────────────────────────
+  bSlider.addEventListener('input', () => {
+    state.brightness = +bSlider.value;
+    bVal.textContent = `${bSlider.value}%`;
+    applyFilters();
+  });
+
+  blurSlider.addEventListener('input', () => {
+    state.blur = +blurSlider.value;
+    blurVal.textContent = `${blurSlider.value}px`;
+    applyFilters();
+  });
+
+  // ── Toggle events ──────────────────────────────────────────
+  btnGray.addEventListener('click', () => {
+    state.grayscale = !state.grayscale;
+    btnGray.classList.toggle('active', state.grayscale);
+    applyFilters();
+  });
+
+  btnInvert.addEventListener('click', () => {
+    state.invert = !state.invert;
+    btnInvert.classList.toggle('active', state.invert);
+    applyFilters();
+  });
+
+  // ── Reset & Download ───────────────────────────────────────
+  btnReset.addEventListener('click', () => { resetState(); applyFilters(); });
+
+  btnDl.addEventListener('click', () => {
+    const link = document.createElement('a');
+    link.download = 'processed-image.png';
+    link.href = canvas.toDataURL('image/png');
+    link.click();
+  });
+
+  // ── File input & drag-drop ─────────────────────────────────
+  fileInput.addEventListener('change', e => loadFile(e.target.files[0]));
+
+  dropZone.addEventListener('dragover', e => {
+    e.preventDefault();
+    dropZone.classList.add('drag-over');
+  });
+  dropZone.addEventListener('dragleave', () => dropZone.classList.remove('drag-over'));
+  dropZone.addEventListener('drop', e => {
+    e.preventDefault();
+    dropZone.classList.remove('drag-over');
+    loadFile(e.dataTransfer.files[0]);
+  });
+})();
+</script>
+<!-- ── end image processing section ── -->
