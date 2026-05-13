@@ -1,0 +1,48 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: #222;
+  padding: 12px 24px;
+}
+
+.logo,
+.nav-links a {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-links {
+  display: flex;
+  list-style: none;
+  gap: 24px;
+  margin: 0;
+  padding: 0;
+}
+
+.dropdown {
+  position: relative;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background: white;
+  list-style: none;
+  padding: 10px;
+  margin: 0;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+.dropdown-menu li a {
+  color: #222;
+  display: block;
+  padding: 8px;
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+}
