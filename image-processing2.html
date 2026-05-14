@@ -1,0 +1,187 @@
+<style>
+  .iaqa-root {
+    background: #0e0e0f;
+    color: #f0f0ee;
+    padding: 3rem 1.5rem;
+    min-height: 100vh;
+    font-family: 'Inter', sans-serif;
+  }
+
+  .iaqa-header {
+    display: grid;
+    grid-template-columns: 1.1fr 1fr;
+    gap: 2rem;
+    align-items: center;
+    margin-bottom: 2.5rem;
+  }
+
+  .iaqa-header h1 {
+    font-size: clamp(2rem, 4vw, 3.2rem);
+    margin: 0 0 1rem;
+    color: #c8ff57;
+  }
+
+  .iaqa-header p {
+    line-height: 1.8;
+    color: #c9d3f5;
+    font-size: 1rem;
+  }
+
+  .iaqa-gallery {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+    gap: 14px;
+  }
+
+  .iaqa-thumb {
+    cursor: pointer;
+    border-radius: 16px;
+    overflow: hidden;
+    border: 2px solid transparent;
+    background: rgba(255,255,255,0.08);
+    transition: 0.25s ease;
+  }
+
+  .iaqa-thumb:hover {
+    transform: translateY(-4px);
+    border-color: #c8ff57;
+  }
+
+  .iaqa-thumb img {
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    object-fit: cover;
+    display: block;
+  }
+
+  .iaqa-result {
+    display: none;
+    margin-top: 2rem;
+    padding: 1.5rem;
+    border-radius: 22px;
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.14);
+  }
+
+  .iaqa-result.visible {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    gap: 1.5rem;
+    align-items: center;
+  }
+
+  .iaqa-result img {
+    width: 100%;
+    border-radius: 18px;
+  }
+
+  .iaqa-result h2 {
+    margin-top: 0;
+    color: #ffffff;
+  }
+
+  .score-good {
+    color: #c8ff57;
+    font-weight: 800;
+  }
+
+  .score-bad {
+    color: #ff7b7b;
+    font-weight: 800;
+  }
+
+  @media (max-width: 800px) {
+    .iaqa-header,
+    .iaqa-result.visible {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+<section class="iaqa-root">
+
+  <div class="iaqa-header">
+    <div>
+      <h1>Scene-Aware IAQA Model</h1>
+      <p>
+        This demo presents a Scene-Aware Image Aesthetic Quality Assessment model.
+        We use a transformer-based algorithm designed to predict both image aesthetic
+        scores and scene category labels. Click one of the example images to view its
+        ground-truth score, predicted score, predicted scene category, and aesthetic label.
+      </p>
+    </div>
+
+    <div class="iaqa-gallery" id="iaqa-gallery"></div>
+  </div>
+
+  <div class="iaqa-result" id="iaqa-result">
+    <img id="result-image" src="" alt="Selected image">
+
+    <div>
+      <h2>Prediction Result</h2>
+      <p><strong>Ground-truth score:</strong> <span id="ground-truth"></span></p>
+      <p><strong>Prediction score:</strong> <span id="prediction-score"></span></p>
+      <p><strong>Scene category:</strong> <span id="scene-label"></span></p>
+      <p><strong>Aesthetic quality:</strong> <span id="aesthetic-label"></span></p>
+    </div>
+  </div>
+
+</section>
+
+<script>
+  const sceneLabels = [
+    "animal",
+    "architecture",
+    "city scape",
+    "human",
+    "indoor",
+    "landscape",
+    "night",
+    "others",
+    "plants",
+    "static"
+  ];
+
+  fetch("results.json")
+    .then(response => response.json())
+    .then(data => {
+      const gallery = document.getElementById("iaqa-gallery");
+
+      data.forEach(item => {
+        const thumb = document.createElement("div");
+        thumb.className = "iaqa-thumb";
+
+        thumb.innerHTML = `
+          <img src="${item.image}" alt="IAQA example image">
+        `;
+
+        thumb.addEventListener("click", () => showResult(item));
+        gallery.appendChild(thumb);
+      });
+    });
+
+  function showResult(item) {
+    const resultBox = document.getElementById("iaqa-result");
+
+    const score = Number(item.prediction_score);
+    const sceneIndex = Number(item.scene_prediction);
+    const sceneText = sceneLabels[sceneIndex] || "unknown";
+
+    document.getElementById("result-image").src = item.image;
+    document.getElementById("ground-truth").textContent = item.ground_truth_score;
+    document.getElementById("prediction-score").textContent = item.prediction_score;
+    document.getElementById("scene-label").textContent = `${sceneIndex} — ${sceneText}`;
+
+    const aestheticLabel = document.getElementById("aesthetic-label");
+
+    if (score > 5 || score > 0.5) {
+      aestheticLabel.textContent = "Good Aesthetic";
+      aestheticLabel.className = "score-good";
+    } else {
+      aestheticLabel.textContent = "Bad Aesthetic";
+      aestheticLabel.className = "score-bad";
+    }
+
+    resultBox.classList.add("visible");
+  }
+</script>
