@@ -1,0 +1,62 @@
+[
+  {
+    "image": "my-folder/farm1_302_19521402224_a52429e46f_b.jpg",
+    "ground_truth_score": 0.45,
+    "prediction_score": 0.452,
+    "scene_prediction": 0
+  },
+  {
+    "image": "my-folder/farm1_315_19998098720_b576b565a2_b.jpg",
+    "ground_truth_score": 0.35,
+    "prediction_score": 0.342,
+    "scene_prediction": 2
+  },
+  {
+    "image": "my-folder/farm1_343_20095781170_16f3d1682f_b.jpg",
+    "ground_truth_score": 0.4,
+    "prediction_score": 0.417,
+    "scene_prediction": 9
+  },
+  {
+    "image": "my-folder/farm1_365_19563233564_ee29db7037_b.jpg",
+    "ground_truth_score": 0.6,
+    "prediction_score": 0.681,
+    "scene_prediction": 7
+  },
+  {
+    "image": "my-folder/farm1_368_20099193988_395c8c665d_b.jpg",
+    "ground_truth_score": 0.35,
+    "prediction_score": 0.325,
+    "scene_prediction": 1
+  },
+  {
+    "image": "my-folder/farm1_384_19376208153_50d6350b2f_b.jpg",
+    "ground_truth_score": 0.25,
+    "prediction_score": 0.392,
+    "scene_prediction": 6
+  },
+  {
+    "image": "my-folder/farm1_386_19977218259_97febb39af_b.jpg",
+    "ground_truth_score": 0.25,
+    "prediction_score": 0.252,
+    "scene_prediction": 5
+  },
+  {
+    "image": "my-folder/farm1_437_20163520542_f6d66c3bd6_b.jpg",
+    "ground_truth_score": 0.7,
+    "prediction_score": 0.622,
+    "scene_prediction": 3
+  },
+  {
+    "image": "my-folder/farm1_458_19586223233_3b42e6025a_b.jpg",
+    "ground_truth_score": 0.875,
+    "prediction_score": 0.864,
+    "scene_prediction": 8
+  },
+  {
+    "image": "my-folder/farm1_505_20208427931_3aa7903bde_b.jpg",
+    "ground_truth_score": 0.5,
+    "prediction_score": 0.511,
+    "scene_prediction": 4
+  }
+]
