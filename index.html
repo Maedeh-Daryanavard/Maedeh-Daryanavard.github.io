@@ -59,11 +59,12 @@
     .dropdown-menu {
       display: none;
       position: absolute;
-      top: 42px;
+      top: 100%;
       right: 0;
       min-width: 230px;
       padding: 10px;
       list-style: none;
+      margin-top: 0;
     
       background: rgba(8, 13, 28, 0.95);
       border: 1px solid var(--line);
@@ -71,7 +72,8 @@
       box-shadow: var(--shadow);
     }
     
-    .dropdown:hover .dropdown-menu {
+    .dropdown:hover .dropdown-menu,
+    .dropdown:focus-within .dropdown-menu {
       display: block;
     }
     
@@ -551,6 +553,8 @@
               <a href="image-processing.html">
                 Basic Image Processing
               </a>
+            </li>
+            <li>
               <a href="image-processing2.html">
                 IAQA model
               </a>
