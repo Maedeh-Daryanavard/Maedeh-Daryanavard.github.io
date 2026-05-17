@@ -1,0 +1,170 @@
+<a href="index.html"
+   style="
+   background:#212529;
+   color:white;
+   padding:14px 30px;
+   text-decoration:none;
+   border-radius:8px;
+   font-weight:bold;
+   display:inline-block;
+   ">
+   ← Back to Portfolio
+</a>
+<section id="kringloop-project" style="font-family: Arial, sans-serif; line-height: 1.8; color: #222; max-width: 1100px; margin: auto; padding: 30px;">
+
+  <h1 style="text-align:center; font-size:42px; margin-bottom:10px;">
+    Kringloop Pricing System
+  </h1>
+
+  <p style="text-align:center; font-size:18px; color:#555; margin-bottom:40px;">
+    Designed a Python-based system for managing and estimating second-hand product prices
+    using image-based analysis and data-driven pricing methods.
+  </p>
+
+  <hr style="margin-bottom:40px;">
+
+  <h2>Project Overview</h2>
+
+  <p>
+    The Kringloop Pricing System is a smart inventory and pricing platform developed for
+    second-hand product management. The system helps users register products, upload product images,
+    analyze market prices, estimate resale values, and manage inventory efficiently.
+  </p>
+
+  <p>
+    The project combines image-based product handling with pricing analysis workflows to support
+    sustainable retail and second-hand store operations. It was designed using modern web technologies
+    and Python-based backend logic.
+  </p>
+
+  <img src="images/Overview-Kringloop-pricing.png"
+       alt="Kringloop Pricing System Overview"
+       style="width:100%; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.15); margin:25px 0;">
+
+  <hr style="margin:50px 0;">
+
+  <h2>Product Registration & Inventory Management</h2>
+
+  <p>
+    The system allows users to add second-hand products into the inventory by entering product details,
+    selecting categories, and uploading product images.
+  </p>
+
+  <p>
+    Features include:
+  </p>
+
+  <ul>
+    <li>Product registration</li>
+    <li>Category management</li>
+    <li>Inventory tracking</li>
+    <li>Image upload support</li>
+    <li>Sold product management</li>
+    <li>Export functionality</li>
+  </ul>
+
+  <p>
+    The interface is designed to be user-friendly and optimized for fast product registration workflows.
+  </p>
+
+  <img src="images/Overview2-Kringloop-pricing.png"
+       alt="Kringloop Product Registration and Pricing"
+       style="width:100%; border-radius:12px; box-shadow:0 4px 15px rgba(0,0,0,0.15); margin:25px 0;">
+
+  <hr style="margin:50px 0;">
+
+  <h2>Image-Based Price Analysis</h2>
+
+  <p>
+    One of the key features of the project is the image-assisted pricing workflow.
+    Users can upload a product image and compare market prices using platforms such as Google Lens.
+  </p>
+
+  <p>
+    The system supports manual entry of discovered market prices and automatically calculates
+    average values for better second-hand pricing estimation.
+  </p>
+
+  <hr style="margin:50px 0;">
+
+  <h2>Price Adjustment & Final Estimation</h2>
+
+  <p>
+    The pricing engine allows dynamic adjustment of second-hand prices based on:
+  </p>
+
+  <ul>
+    <li>Average market price</li>
+    <li>Damage or wear percentage</li>
+    <li>Manual price adjustments</li>
+    <li>Condition-based calculations</li>
+  </ul>
+
+  <p>
+    The system calculates adjusted and final resale prices automatically,
+    helping store managers determine fair and realistic second-hand values.
+  </p>
+
+  <p>
+    This approach combines data-driven estimation with practical resale considerations,
+    making the pricing process more efficient and consistent.
+  </p>
+
+  <hr style="margin:50px 0;">
+
+  <h2>Technologies Used</h2>
+
+  <ul>
+    <li>Python</li>
+    <li>HTML5</li>
+    <li>CSS3</li>
+    <li>JavaScript</li>
+    <li>Image Processing Workflow</li>
+    <li>Data-driven Price Analysis</li>
+    <li>Responsive UI Design</li>
+  </ul>
+
+  <hr style="margin:50px 0;">
+
+  <h2>Key Features</h2>
+
+  <ul>
+    <li>Second-hand product management</li>
+    <li>Image upload functionality</li>
+    <li>Inventory system</li>
+    <li>Market price comparison</li>
+    <li>Automatic average price calculation</li>
+    <li>Damage percentage adjustment</li>
+    <li>Final price estimation engine</li>
+    <li>Responsive and modern interface</li>
+  </ul>
+
+  <hr style="margin:50px 0;">
+
+  <h2>Project Goal</h2>
+
+  <p>
+    The goal of this project is to support sustainable retail operations by improving
+    the efficiency of pricing second-hand products. The system reduces manual effort,
+    improves pricing consistency, and helps users make informed pricing decisions
+    using market-based data and product condition analysis.
+  </p>
+
+  <div style="margin-top:60px; text-align:center;">
+
+    <a href="index.html"
+       style="
+       background:#212529;
+       color:white;
+       padding:14px 30px;
+       text-decoration:none;
+       border-radius:8px;
+       font-weight:bold;
+       display:inline-block;
+       ">
+       ← Back to Portfolio
+    </a>
+
+  </div>
+
+</section>
