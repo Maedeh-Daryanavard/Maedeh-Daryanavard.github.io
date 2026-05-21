@@ -7,7 +7,7 @@ You can find all information about my experience, skills, projects, and educatio
 
 Click the link below to view my resume directly in your browser:
 
-👉 [View My Resume](https://Maedeh_Daryanavard.github.io)
+👉 [View My Resume](https://maedeh-daryanavard.github.io/)
 
 ## About
 
