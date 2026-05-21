@@ -181,10 +181,10 @@
     const sceneIndex = Number(item.scene_prediction);
     const sceneText = sceneLabels[sceneIndex] || "unknown";
 
-    document.getElementById("result-image").src = item.image;
+    document.getElementById("result-image").src = '../../${item.image}';
     document.getElementById("ground-truth").textContent = item.ground_truth_score;
     document.getElementById("prediction-score").textContent = item.prediction_score;
-    document.getElementById("scene-label").textContent = `${sceneText}`;
+    document.getElementById("scene-label").textContent = '${sceneText}';
 
     const aestheticLabel = document.getElementById("aesthetic-label");
 
