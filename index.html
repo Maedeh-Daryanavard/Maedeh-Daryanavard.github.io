@@ -8,580 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
-  <style>
-    .navbar {
-      width: min(100%, var(--max));
-      margin: 20px auto 0;
-      padding: 14px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      position: relative;
-      z-index: 20;
-    
-      background: rgba(8, 13, 28, 0.78);
-      border: 1px solid var(--line);
-      border-radius: 22px;
-      backdrop-filter: blur(14px);
-      box-shadow: var(--shadow);
-    }
-    
-    .logo {
-      font-weight: 800;
-      color: var(--text);
-    }
-    
-    .nav-links {
-      display: flex;
-      gap: 18px;
-      list-style: none;
-      margin: 0;
-      padding: 0;
-    }
-    
-    .nav-links a {
-      color: var(--muted);
-      font-weight: 600;
-      padding: 10px 14px;
-      border-radius: 14px;
-      transition: 0.25s ease;
-    }
-    
-    .nav-links a:hover {
-      color: var(--text);
-      background: linear-gradient(135deg, rgba(142,197,255,0.16), rgba(201,167,255,0.12));
-    }
-    
-    .dropdown {
-      position: relative;
-    }
-    
-    .dropdown-menu {
-      display: none;
-      position: absolute;
-      top: 100%;
-      right: 0;
-      min-width: 230px;
-      padding: 10px;
-      list-style: none;
-      margin-top: 0;
-    
-      background: rgba(8, 13, 28, 0.95);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      box-shadow: var(--shadow);
-    }
-    
-    .dropdown:hover .dropdown-menu,
-    .dropdown:focus-within .dropdown-menu {
-      display: block;
-    }
-    
-    .dropdown-menu a {
-      display: block;
-    }
-    :root {
-      --bg: #0b1020;
-      --bg-soft: #111936;
-      --card: rgba(255,255,255,0.08);
-      --card-strong: rgba(255,255,255,0.12);
-      --text: #f4f7ff;
-      --muted: #c9d3f5;
-      --accent: #7fb8ff;
-      --accent-2: #c39bff;
-      --line: rgba(255,255,255,0.14);
-      --shadow: 0 20px 60px rgba(0,0,0,0.35);
-      --radius: 24px;
-      --max: 1200px;
-    }
-
-    * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
-    body {
-      margin: 0;
-      font-family: 'Inter', sans-serif;
-      color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(142,197,255,0.18), transparent 28%),
-        radial-gradient(circle at top right, rgba(201,167,255,0.18), transparent 25%),
-        linear-gradient(180deg, #070b16 0%, #0b1020 55%, #0e1530 100%);
-      overflow-x: hidden;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-      background-size: 32px 32px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,0.45), rgba(0,0,0,0.08));
-      z-index: 0;
-    }
-
-    a { color: inherit; text-decoration: none; }
-    img { max-width: 100%; display: block; }
-
-    .layout {
-      width: min(100%, var(--max));
-      margin: 0 auto;
-      display: grid;
-      grid-template-columns: 250px minmax(0, 1fr);
-      gap: 22px;
-      padding: 20px;
-      position: relative;
-      z-index: 1;
-    }
-
-    .sidebar {
-      position: sticky;
-      top: 18px;
-      align-self: start;
-      height: calc(100vh - 36px);
-      padding: 20px;
-      border: 1px solid var(--line);
-      background: rgba(8, 13, 28, 0.78);
-      backdrop-filter: blur(14px);
-      border-radius: 28px;
-      box-shadow: var(--shadow);
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      gap: 20px;
-    }
-    .sidebar-photo {
-      margin-top: 18px;
-      margin-bottom: 18px;
-      display: flex;
-      justify-content: center;
-    }
-  
-    .sidebar-photo-frame {
-      width: 100%;
-      max-width: 190px;
-      padding: 8px;
-      border-radius: 24px;
-      background: linear-gradient(145deg, rgba(142,197,255,0.18), rgba(201,167,255,0.14));
-      border: 1px solid rgba(255,255,255,0.12);
-      box-shadow: var(--shadow);
-    }
-    
-    .sidebar-profile-img {
-      width: 100%;
-      aspect-ratio: 4 / 5;
-      object-fit: cover;
-      display: block;
-      border-radius: 18px;
-    }  
-
-    .brand {
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-    }
-
-    .brand h1 {
-      margin: 0;
-      font-size: 1.2rem;
-      line-height: 1.15;
-      letter-spacing: -0.03em;
-    }
-
-    .brand p {
-      margin: 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-      line-height: 1.6;
-    }
-
-    .nav {
-      display: flex;
-      flex-direction: column;
-      gap: 10px;
-      margin-top: 18px;
-    }
-
-    .nav a {
-      padding: 12px 14px;
-      border-radius: 16px;
-      color: var(--muted);
-      border: 1px solid transparent;
-      transition: 0.25s ease;
-      font-weight: 600;
-    }
-
-    .nav a:hover,
-    .nav a.active {
-      color: var(--text);
-      background: linear-gradient(135deg, rgba(142,197,255,0.16), rgba(201,167,255,0.12));
-      border-color: rgba(255,255,255,0.1);
-      transform: translateX(4px);
-    }
-
-    .sidebar-footer {
-      border-top: 1px solid var(--line);
-      padding-top: 18px;
-      color: var(--muted);
-      font-size: 0.88rem;
-      line-height: 1.7;
-    }
-
-    .content {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
-    }
-
-    .section {
-      
-      min-height: auto;
-      padding: 36px 40px;
-      border: 1px solid var(--line);
-      border-radius: 30px;
-      background: rgba(10, 16, 36, 0.68);
-      backdrop-filter: blur(10px);
-      box-shadow: var(--shadow);
-      display: flex;
-      align-items: center;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: opacity 0.7s ease, transform 0.7s ease;
-    }
-
-    .section.visible {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .section-inner {
-      width: 100%;
-    }
-
-    .eyebrow {
-      display: inline-flex;
-      gap: 8px;
-      align-items: center;
-      padding: 8px 14px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.08);
-      color: var(--accent);
-      font-size: 0.86rem;
-      font-weight: 700;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
-      margin-bottom: 18px;
-    }
-
-
-    .hero-text h2,
-    .section-title {
-      margin: 0;
-      font-size: clamp(2.3rem, 3vw, 3.5rem);
-      font-weight: 750;
-      color: #ffffff;
-      line-height: 1.08;
-      letter-spacing: -0.05em;
-    }
-    
-    .hero-text h3 {
-      margin: 14px 0 0;
-      font-size: 1.02rem;
-      font-weight: 600;
-      color: var(--accent);
-    }
-    
-    .lead {
-      margin: 18px 0;
-      font-size: 1.06rem;
-      line-height: 1.9;
-      color: var(--muted);
-    }
-
-    .interest-tags,
-    .skills-grid {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 22px;
-    }
-
-    .tag,
-    .skill-card,
-
-
-    .tag {
-      padding: 10px 14px;
-      font-weight: 600;
-      color: #ffffff;
-      background: rgba(255,255,255,0.08);
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-
-    .stats {
-      margin-top: 26px;
-      display: flex;
-      gap: 14px;
-      flex-wrap: wrap;
-    }
-    
-    .mini-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      gap: 6px;
-      
-      box-shadow: var(--shadow);
-      
-      padding: 22px 30px;
-      min-width: 140px;
-    
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,0.08);
-    
-      background: rgba(255,255,255,0.04);
-      backdrop-filter: blur(6px);
-    
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .mini-card strong {
-      display: block;
-      font-size: 1.12rem;
-      margin-bottom: 6px;
-    }
-
-    .timeline {
-      position: relative;
-      margin-top: 28px;
-      padding-left: 22px;
-      border-left: 2px solid rgba(142,197,255,0.28);
-      display: grid;
-      gap: 20px;
-    }
-
-    .timeline-item,
-    .publication-card,
-    .contact-card {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.1);
-      border-radius: 22px;
-      padding: 18px;
-    }
-
-    .timeline-item h4,
-    .publication-card h4,
-    .contact-card h4,
-    .skill-card h4 {
-      margin: 0 0 8px;
-      font-size: 1rem;
-    }
-
-    .meta {
-      color: var(--accent);
-      font-weight: 600;
-      margin-bottom: 10px;
-      display: block;
-    }
-
-    .muted {
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .publications,
-    .contact-grid {
-      display: grid;
-      gap: 18px;
-      margin-top: 28px;
-    }
-
-    .skills-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 18px;
-      margin-top: 26px;
-    }
-
-    .skill-card {
-      padding: 18px;
-    }
-
-    .skill-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.8;
-    }
-
-    .two-col {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 22px;
-      margin-top: 28px;
-    }
-
-    .list-clean {
-      margin: 0;
-      padding-left: 18px;
-      color: var(--muted);
-      line-height: 1.9;
-    }
-
-    .contact-grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .contact-card p {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.85;
-    }
-
-    .footer-note {
-      margin-top: 24px;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    @media (min-width: 1025px) {
-      .content {
-        max-width: 920px;
-      }
-    }
-
-    @media (max-width: 1024px) {
-      .layout {
-        grid-template-columns: 1fr;
-      }
-
-      .sidebar {
-        position: relative;
-        top: 0;
-        height: auto;
-      }
-
-      .hero-grid,
-      .two-col,
-      .contact-grid,
-      .skills-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .section {
-        min-height: auto;
-        padding: 36px 40px;
-      }
-      
-    }
-
-    @media (max-width: 640px) {
-      .layout {
-        padding: 16px;
-        gap: 18px;
-      }
-
-      .section,
-      .sidebar {
-        padding: 20px;
-        border-radius: 24px;
-      }
-
-      .stats {
-        grid-template-columns: 1fr;
-      }
-
-      .nav a:hover,
-      .nav a.active {
-        transform: none;
-      }
-    }
-
-    .contact-links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-      gap: 14px;
-      margin-top: 22px;
-    }
-    
-    .contact-link {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 16px;
-      text-decoration: none;
-      color: #f4f7ff;
-      border: 1px solid rgba(255,255,255,0.10);
-      background: rgba(255,255,255,0.05);
-      border-radius: 16px;
-      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
-    }
-    
-    .contact-link i {
-      font-size: 1.2rem;
-      width: 22px;
-      text-align: center;
-      color: var(--accent);
-    }
-    
-    .contact-link span {
-      font-size: 0.96rem;
-      font-weight: 600;
-      color: #ffffff;
-    }
-    
-    .contact-link:hover {
-      transform: translateY(-3px);
-      border-color: rgba(127,184,255,0.35);
-      background: rgba(255,255,255,0.08);
-    }
-
-    /* Project preview layout: compact, responsive, and never cropped */
-    .demo-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 20px;
-      margin-top: 24px;
-      align-items: start;
-    }
-    .demo-card {
-      display: block;
-      min-width: 0;
-      width: 100%;
-      overflow: hidden;
-      box-sizing: border-box;
-      padding: 14px;
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      background: rgba(255,255,255,0.05);
-      color: inherit;
-      text-decoration: none;
-      transition: transform 0.3s ease, border-color 0.3s ease;
-    }
-    .demo-card:hover {
-      transform: translateY(-4px);
-      border-color: rgba(127,184,255,0.4);
-    }
-    .demo-card video,
-    .demo-card img.project-preview {
-      display: block;
-      width: 100%;
-      max-width: 360px;
-      height: auto;
-      object-fit: contain;
-      margin: 0 auto;
-      border-radius: 12px;
-      background: #080d1c;
-    }
-    .demo-card video { aspect-ratio: 16 / 9; }
-    .demo-description { padding: 16px 2px 2px; }
-    .demo-description h4 { margin: 8px 0; }
-    .demo-description p { color: var(--muted); line-height: 1.7; }
-    @media (max-width: 800px) {
-      .demo-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
         <nav class="navbar">
@@ -595,22 +22,22 @@
     
           <ul class="dropdown-menu">
             <li>
-              <a href="resume\project\IAQA_Image_Processing.html">
+              <a href="resume/project/IAQA_Image_Processing.html">
                 IAQA model
               </a>
             </li>
             <li>
-              <a href="resume\project\Office_Management_System.html">
+              <a href="resume/project/Office_Management_System.html">
                 Office Management System
               </a>
             </li>
             <li>
-              <a href="resume\project\Second_Hand_Product_Management_System.html">
+              <a href="resume/project/Second_Hand_Product_Management_System.html">
                 Second-Hand Product Management System
               </a>
             </li>
             <li>
-              <a href="resume\project\Basic_Image_Processing.html">
+              <a href="resume/project/Basic_Image_Processing.html">
                 Basic Image Processing
               </a>
             </li>
@@ -704,253 +131,46 @@
       ===================================================== -->
       
       <section id="projects" class="section">
-      
-          <div class="section-inner">
-      
-              <!-- Section Header -->
-      
-              <div class="eyebrow">
-                  Selected Projects
-              </div>
-      
-              <h2 class="section-title">
-                  Computer Vision in Action
-              </h2>
-      
-              <p class="lead">
-                  Research and applied computer vision projects combining
-                  deep learning, visual understanding, object detection,
-                  tracking, and intelligent image analysis.
-              </p>
-      
-      
-              <!-- =====================================================
-                   PROJECT GRID
-              ===================================================== -->
-      
-              <div class="portfolio-project-grid">
-      
-      
-                  <!-- =====================================================
-                       PROJECT 01 — SOCCERVISION AI
-                  ===================================================== -->
-      
-                  <article class="portfolio-project-card">
-      
-                      <!-- Project Number -->
-      
-                      <span class="project-number">
-                          01
-                      </span>
-      
-                      <!-- Project Title -->
-      
-                      <h3 class="portfolio-project-title">
-                          SoccerVision AI — Football Video Analytics
-                      </h3>
-      
-                      <span class="meta">
-                          Independent Computer Vision Project · 2026
-                      </span>
-      
-                      <span class="project-category">
-                          Applied Computer Vision
-                      </span>
-      
-      
-                      <!-- Video Preview -->
-      
-                      <div class="portfolio-preview">
-      
-                          <video
-                              controls
-                              preload="metadata"
-                              playsinline
-                              aria-label="SoccerVision AI Football Analytics"
-                          >
-      
-                              <source
-                                  src="video/soccer-ir_pass_main_camera_h264.mp4"
-                                  type="video/mp4"
-                              >
-      
-                              Your browser does not support HTML5 video.
-      
-                          </video>
-      
-                      </div>
-      
-      
-                      <!-- Project Description -->
-      
-                      <div class="portfolio-project-description">
-      
-                          <h4>
-                              Player Detection, Tracking &amp; Tactical Analysis
-                          </h4>
-      
-                          <p>
-                              Developed a football analytics system integrating
-                              player and ball detection, multi-object tracking,
-                              player identification, and movement analysis.
-                              The system estimates player speed and trajectories,
-                              analyzes ball possession and passing patterns,
-                              and identifies potential pass recipients.
-                              Using homography and perspective transformation,
-                              it generates a bird's-eye pitch view for spatial
-                              analysis and tactical visualization.
-                          </p>
-      
-                      </div>
-      
-      
-                      <!-- Technology Tags -->
-      
-                      <div class="portfolio-project-tags">
-      
-                          <span class="tag">Python</span>
-      
-                          <span class="tag">YOLO</span>
-      
-                          <span class="tag">OpenCV</span>
-      
-                          <span class="tag">Computer Vision</span>
-      
-                          <span class="tag">Multi-Object Tracking</span>
-      
-                          <span class="tag">Speed Estimation</span>
-      
-                          <span class="tag">Ball Possession</span>
-      
-                          <span class="tag">Pass Analysis</span>
-      
-                          <span class="tag">Homography</span>
-      
-                          <span class="tag">Bird's-Eye View</span>
-      
-                      </div>
-      
-                  </article>
-      
-      
-      
-                  <!-- =====================================================
-                       PROJECT 02 — SCENE-AWARE IAQA
-                  ===================================================== -->
-      
-                  <article class="portfolio-project-card">
-      
-                      <!-- Project Number -->
-      
-                      <span class="project-number">
-                          02
-                      </span>
-      
-      
-                      <!-- Project Title -->
-      
-                      <h3 class="portfolio-project-title">
-                          Scene-Aware Image Aesthetic Quality Assessment
-                      </h3>
-      
-                      <span class="meta">
-                          PhD Research Project · 2023–2026
-                      </span>
-      
-                      <span class="project-category">
-                          Deep Learning Research
-                      </span>
-      
-      
-                      <!-- Image Preview -->
-      
-                      <div class="portfolio-preview">
-      
-                          <a
-                              href="https://maedeh-daryanavard.github.io/resume/project/IAQA_Image_Processing.html"
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              aria-label="Explore Scene-Aware IAQA Project"
-                          >
-      
-                              <img
-                                  src="images/IAQA-preview.png"
-                                  alt="Scene-Aware Image Aesthetic Quality Assessment"
-                                  loading="lazy"
-                              >
-      
-                          </a>
-      
-                      </div>
-      
-      
-                      <!-- Project Description -->
-      
-                      <div class="portfolio-project-description">
-      
-                          <h4>
-                              Scene-Aware Image Aesthetic Analysis
-                          </h4>
-      
-                          <p>
-                              Developed a scene-aware deep learning framework
-                              for image aesthetic quality assessment using
-                              Vision Transformers and semantic scene information.
-                              The model integrates visual representations and
-                              scene context to improve aesthetic score prediction
-                              and attribute-level analysis, supporting more
-                              context-sensitive and interpretable image evaluation.
-                          </p>
-      
-                      </div>
-      
-      
-                      <!-- Technology Tags -->
-      
-                      <div class="portfolio-project-tags">
-      
-                          <span class="tag">Python</span>
-      
-                          <span class="tag">PyTorch</span>
-      
-                          <span class="tag">Vision Transformer</span>
-      
-                          <span class="tag">DINOv2</span>
-      
-                          <span class="tag">Deep Learning</span>
-      
-                          <span class="tag">Computer Vision</span>
-      
-                          <span class="tag">Scene-Aware Learning</span>
-      
-                          <span class="tag">Image Aesthetics</span>
-      
-                      </div>
-      
-      
-                      <!-- Explore Project Button -->
-      
-                      <a
-                          href="https://maedeh-daryanavard.github.io/resume/project/IAQA_Image_Processing.html"
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          class="portfolio-project-link"
-                      >
-      
-                          Explore Research Project
-      
-                          <i class="fa-solid fa-arrow-up-right-from-square"></i>
-      
-                      </a>
-      
-                  </article>
-      
-      
-              </div>
-      
+  <div class="section-inner">
+    <div class="eyebrow">Selected Productions</div>
+    <h2 class="section-title">Computer vision in action</h2>
+    <p class="lead">Small previews of applied computer vision and research projects.</p>
+    <div class="samples-grid">
+      <article class="sample-card">
+        <div class="sample-media">
+          <video controls preload="metadata" playsinline aria-label="SoccerVision AI demonstration">
+            <source src="video/soccer-ir_pass_main_camera_h264.mp4" type="video/mp4">
+            Your browser does not support HTML5 video.
+          </video>
+        </div>
+        <div class="sample-body">
+          <span class="sample-category">Applied Computer Vision · 2026</span>
+          <h3 class="sample-title">SoccerVision AI — Football Video Analytics</h3>
+          <p class="sample-summary">Player and ball detection, tracking, speed estimation, possession and pass analysis, potential pass recipients, and bird’s-eye tactical visualization using homography.</p>
+          <div class="sample-tags">
+            <span>Python</span><span>YOLO</span><span>OpenCV</span><span>Tracking</span><span>Pass Analysis</span><span>Homography</span>
           </div>
-      
-      </section>
+        </div>
+      </article>
+      <article class="sample-card">
+        <div class="sample-media">
+          <a href="resume/project/IAQA_Image_Processing.html" target="_blank" rel="noopener noreferrer" aria-label="View IAQA research project">
+            <img src="images/IAQA-preview.png" alt="Scene-Aware Image Aesthetic Quality Assessment preview" loading="lazy">
+          </a>
+        </div>
+        <div class="sample-body">
+          <span class="sample-category">PhD Research · 2023–2026</span>
+          <h3 class="sample-title">Scene-Aware Image Aesthetic Quality Assessment</h3>
+          <p class="sample-summary">Scene-aware Vision Transformer framework combining image features and semantic scene context to improve aesthetic score and attribute prediction.</p>
+          <div class="sample-tags">
+            <span>Python</span><span>PyTorch</span><span>ViT</span><span>DINOv2</span><span>Scene-Aware AI</span>
+          </div>
+          <a class="sample-link" href="resume/project/IAQA_Image_Processing.html" target="_blank" rel="noopener noreferrer">Explore project <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
             
       <section id="experience" class="section">
         <div class="section-inner">
@@ -1099,6 +319,7 @@
             </p>
           
           
+              <div class="contact-links">
               <a href="https://nl.linkedin.com/in/maedeh-daryanavard-chounchenani-810981136" target="_blank" class="contact-link">
                 <i class="fa-brands fa-linkedin"></i>
                 <span>LinkedIn</span>
@@ -1131,11 +352,9 @@
                 <i class="fa-brands fa-researchgate"></i>
                 <span>ResearchGate</span>
               </a>
+              </div>
             </div>
           </div>
-
-           
-          </p>
         </div>
       </section>
     </main>
