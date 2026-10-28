@@ -302,3 +302,30 @@
         transform: none;
     }
 }
+/* Video preview container */
+.demo-card {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Smaller responsive video preview */
+.demo-card video {
+    display: block;
+    width: 100%;
+    max-width: 550px;       /* Change this to 400px, 500px, etc. */
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: contain;
+    margin: 0 auto;
+    border-radius: 12px;
+    background: #000;
+}
+
+/* Mobile responsive */
+@media (max-width: 640px) {
+    .demo-card video {
+        max-width: 100%;
+    }
+}
