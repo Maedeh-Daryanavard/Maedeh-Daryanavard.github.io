@@ -469,3 +469,346 @@
         object-fit: contain !important;
     }
 }
+/* =====================================================
+   PORTFOLIO PROJECTS — TWO COLUMN LAYOUT
+===================================================== */
+
+.portfolio-project-grid {
+
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 24px;
+
+    margin-top: 30px;
+
+    align-items: stretch;
+}
+
+
+/* =====================================================
+   INDIVIDUAL PROJECT CARD
+===================================================== */
+
+.portfolio-project-card {
+
+    display: flex;
+
+    flex-direction: column;
+
+    min-width: 0;
+
+    width: 100%;
+
+    padding: 22px;
+
+    background: rgba(255, 255, 255, 0.05);
+
+    border: 1px solid rgba(255, 255, 255, 0.12);
+
+    border-radius: 20px;
+
+    box-sizing: border-box;
+
+    overflow: hidden;
+
+    transition: transform 0.3s ease,
+                border-color 0.3s ease;
+}
+
+
+.portfolio-project-card:hover {
+
+    transform: translateY(-5px);
+
+    border-color: rgba(127, 184, 255, 0.4);
+}
+
+
+/* =====================================================
+   PROJECT TITLE
+===================================================== */
+
+.portfolio-project-title {
+
+    font-size: 1.25rem;
+
+    font-weight: 700;
+
+    line-height: 1.4;
+
+    color: #ffffff;
+
+    margin: 12px 0;
+}
+
+
+.portfolio-project-card .meta {
+
+    display: block;
+
+    margin-bottom: 12px;
+
+    font-size: 0.85rem;
+
+    color: #7fb8ff;
+}
+
+
+.portfolio-project-card .project-category {
+
+    display: inline-block;
+
+    align-self: flex-start;
+
+    margin-bottom: 20px;
+
+    font-size: 0.8rem;
+}
+
+
+/* =====================================================
+   VIDEO AND IMAGE PREVIEW
+===================================================== */
+
+.portfolio-preview {
+
+    width: 100%;
+
+    height: 220px;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: rgba(0, 0, 0, 0.25);
+
+    border-radius: 14px;
+
+    margin-bottom: 20px;
+}
+
+
+.portfolio-preview video {
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    max-width: 100%;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    background: #000;
+}
+
+
+.portfolio-preview a {
+
+    display: flex;
+
+    width: 100%;
+
+    height: 100%;
+
+    align-items: center;
+
+    justify-content: center;
+}
+
+
+.portfolio-preview img {
+
+    display: block;
+
+    width: 100%;
+
+    height: 100%;
+
+    max-width: 100%;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+}
+
+
+/* =====================================================
+   PROJECT DESCRIPTION
+===================================================== */
+
+.portfolio-project-description {
+
+    width: 100%;
+
+    margin-bottom: 20px;
+}
+
+
+.portfolio-project-description h4 {
+
+    color: #ffffff;
+
+    font-size: 1.05rem;
+
+    font-weight: 700;
+
+    line-height: 1.5;
+
+    margin: 0 0 12px;
+}
+
+
+.portfolio-project-description p {
+
+    color: #c9d3f5;
+
+    font-size: 0.92rem;
+
+    line-height: 1.8;
+
+    margin: 0;
+
+    text-align: left;
+}
+
+
+/* =====================================================
+   TECHNOLOGY TAGS
+===================================================== */
+
+.portfolio-project-tags {
+
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 8px;
+
+    margin-top: auto;
+
+    padding-top: 10px;
+}
+
+
+.portfolio-project-tags .tag {
+
+    display: inline-block;
+
+    padding: 7px 11px;
+
+    font-size: 0.75rem;
+
+    font-weight: 600;
+
+    color: #ffffff;
+
+    background: rgba(127, 184, 255, 0.10);
+
+    border: 1px solid rgba(127, 184, 255, 0.22);
+
+    border-radius: 10px;
+}
+
+
+/* =====================================================
+   EXPLORE PROJECT LINK
+===================================================== */
+
+.portfolio-project-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 8px;
+
+    margin-top: 22px;
+
+    color: #7fb8ff;
+
+    font-size: 0.9rem;
+
+    font-weight: 700;
+
+    text-decoration: none;
+
+    transition: color 0.3s ease;
+}
+
+
+.portfolio-project-link:hover {
+
+    color: #c39bff;
+}
+
+
+/* =====================================================
+   TABLET RESPONSIVE
+===================================================== */
+
+@media (max-width: 1024px) {
+
+    .portfolio-project-grid {
+
+        grid-template-columns: 1fr;
+
+    }
+
+    .portfolio-preview {
+
+        height: 260px;
+
+    }
+
+}
+
+
+/* =====================================================
+   MOBILE RESPONSIVE
+===================================================== */
+
+@media (max-width: 640px) {
+
+    .portfolio-project-grid {
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+
+    }
+
+    .portfolio-project-card {
+
+        padding: 16px;
+
+    }
+
+    .portfolio-project-title {
+
+        font-size: 1.1rem;
+
+    }
+
+    .portfolio-preview {
+
+        height: 190px;
+
+    }
+
+    .portfolio-project-description p {
+
+        font-size: 0.88rem;
+
+    }
+
+}
