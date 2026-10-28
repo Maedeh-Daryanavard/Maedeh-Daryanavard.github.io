@@ -634,35 +634,45 @@
               <div class="mini-card"><strong>15+</strong><span>Years Experience</span></div>
             </div>
       
-            <div class="two-col">
-              <div class="timeline-item">
+            <div class="education-stack" id="education">
+              <div class="timeline-item education-entry">
                 <h4>Education</h4>
-          
-                <strong>Ph.D. in Computer Science</strong><br><br> 2023–2026 <br>
-                <p class="muted">
-                  Science and Engineering, University of Groningen, The Netherlands<br>
-                  <!-- Supervisor: Prof. Dr. Ir. G.N. (Georgi) Gaydadjiev<br> -->
-                  Project: Semantic Image Aesthetic Quality Assessment
-                </p>
-                <br><br>
-                <strong>Master’s Degree, Computer Engineering</strong><br><br> 2015–2018<br>
-                <p class="muted">
-                University of Lahijan, Iran<br>
-                hesis: Non-distortion-specific no-reference Image Quality Assessment using Statistical Features<br>
-                GPA: 19.14/20
-                </p>
-                <br><br>
-                <strong>Bachelor’s Degree, Computer Engineering</strong><br><br> 2010–2014<br>
-                <p class="muted">
-                University of Lahijan, Iran<br>
-                Thesis: Design and Development of Clinic Information System<br>
-                GPA: 15.85/20
-                </p>
+                <strong>Ph.D. in Computer Science</strong><br><span class="meta">2023–2026</span>
+                <p class="muted">Faculty of Science and Engineering, University of Groningen, The Netherlands<br>Research: Semantic Image Aesthetic Quality Assessment</p>
               </div>
+              <div class="timeline-item education-entry">
+                <strong>Master’s Degree, Computer Engineering</strong><br><span class="meta">2015–2018</span>
+                <p class="muted">University of Lahijan, Iran<br>Thesis: Non-Distortion-Specific No-Reference Image Quality Assessment Using Statistical Features<br>GPA: 19.14/20</p>
+              </div>
+              <div class="timeline-item education-entry">
+                <strong>Bachelor’s Degree, Computer Engineering</strong><br><span class="meta">2010–2014</span>
+                <p class="muted">University of Lahijan, Iran<br>Thesis: Design and Development of Clinic Information System<br>GPA: 15.85/20</p>
+              </div>
+            </div>
       
               
             </div>
           </div>
+      </section>
+      <section id="projects" class="section">
+        <div class="section-inner">
+          <div class="eyebrow">Selected Productions</div>
+          <h2 class="section-title">Computer vision in action</h2>
+          <p class="lead">Applied computer vision projects combining detection, tracking, geometric analysis, and video analytics.</p>
+          <article class="project-card">
+            <span class="project-number">01</span>
+            <h3>SoccerVision AI — Football Video Analytics</h3>
+            <span class="meta">Independent Computer Vision Project · 2026</span>
+            <span class="project-category">Project Demonstration</span>
+            <p class="muted">A football video analysis pipeline exploring player and ball detection, multi-object tracking, possession estimation, player movement analysis, and pitch-based tactical visualization. The project combines deep learning and geometric transformations to convert match footage into interpretable on-screen analytics.</p>
+            <div class="project-tags"><span>Python</span><span>YOLO</span><span>OpenCV</span><span>Multi-Object Tracking</span><span>Homography</span><span>Video Analytics</span></div>
+            <div class="demo-grid">
+              <article class="demo-card"><video controls preload="metadata" playsinline aria-label="Player detection and tracking demonstration"><source src="videos/player-tracking.mp4" type="video/mp4">Your browser does not support HTML5 video.</video><div class="demo-description"><h4>Player Detection &amp; Tracking</h4><p>Multi-player detection and frame-to-frame tracking with player identifiers and visual markers, supporting movement analysis throughout a match.</p></div></article>
+              <article class="demo-card"><video controls preload="metadata" playsinline aria-label="Ball tracking and possession demonstration"><source src="videos/ball-possession.mp4" type="video/mp4">Your browser does not support HTML5 video.</video><div class="demo-description"><h4>Ball Tracking &amp; Live Possession</h4><p>Football localization and proximity-based possession estimation to identify likely ball ownership and summarize possession over time.</p></div></article>
+              <article class="demo-card"><video controls preload="metadata" playsinline aria-label="Player speed analysis demonstration"><source src="videos/player-speed.mp4" type="video/mp4">Your browser does not support HTML5 video.</video><div class="demo-description"><h4>Player Speed &amp; Movement Analysis</h4><p>Estimation of player trajectories and speed from tracked positions, using pitch-coordinate calibration when available.</p></div></article>
+              <article class="demo-card"><video controls preload="metadata" playsinline aria-label="Bird's-eye tactical view demonstration"><source src="videos/birds-eye-view.mp4" type="video/mp4">Your browser does not support HTML5 video.</video><div class="demo-description"><h4>Bird’s-Eye Tactical View</h4><p>Perspective transformation maps player positions from broadcast footage to a top-down pitch representation for tactical interpretation.</p></div></article>
+            </div>
+          </article>
         </div>
       </section>
             
