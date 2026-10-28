@@ -313,8 +313,8 @@
 /* Smaller responsive video preview */
 .demo-card video {
     display: block;
-    width: 50%;
-    max-width: 30px;       /* Change this to 400px, 500px, etc. */
+    width: 200%;
+    max-width: 100px;       /* Change this to 400px, 500px, etc. */
     height: auto;
     aspect-ratio: 16 / 9;
     object-fit: contain;
