@@ -302,115 +302,96 @@
         transform: none;
     }
 }
-/* Video preview container */
-.demo-card {
-    width: 100%;
-    max-width: 100%;
-    overflow: hidden;
-    box-sizing: border-box;
-}
+/* =====================================================
+   PROJECT PREVIEW FIXES
+   IAQA IMAGE + SOCCERVISION VIDEO
+   ===================================================== */
 
-/* ==========================================
-   PROJECT DEMONSTRATION GRID
-========================================== */
+
+/* Project grid */
 
 .demo-grid {
     display: grid;
-
-    /* Two columns on desktop */
     grid-template-columns: repeat(2, minmax(0, 1fr));
-
     gap: 24px;
     margin-top: 25px;
-
-    align-items: start;
+    align-items: stretch;
 }
 
 
-/* ==========================================
-   PROJECT CARD
-========================================== */
+/* Project cards */
 
 .demo-card {
     width: 100%;
     max-width: 100%;
-
     min-width: 0;
 
     box-sizing: border-box;
-
     overflow: hidden;
 
-    background: rgba(255, 255, 255, 0.05);
-
-    border: 1px solid rgba(255, 255, 255, 0.12);
-
-    border-radius: 16px;
-
     padding: 15px;
+
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    border-radius: 16px;
 
     transition: transform 0.3s ease,
                 border-color 0.3s ease;
 }
 
 
-/* Hover effect */
+/* Card hover effect */
 
 .demo-card:hover {
     transform: translateY(-5px);
-
     border-color: rgba(127, 184, 255, 0.4);
 }
 
 
-/* ==========================================
+/* =====================================================
    VIDEO PREVIEW
-========================================== */
+   ===================================================== */
 
 .demo-card video {
-
     display: block;
 
-    /* Responsive video width */
+    /* Smaller video preview */
     width: 100%;
+    max-width: 360px;
 
-    /* Maximum preview width */
-    max-width: 400px;
-
-    /* Maintain original video proportions */
+    /* Keep original proportions */
     height: auto;
+    aspect-ratio: auto;
 
-    /* Do not crop video */
+    /* Prevent cropping */
     object-fit: contain;
 
     /* Center video */
     margin: 0 auto;
 
     border-radius: 12px;
-
     background: #000;
 }
 
 
-/* ==========================================
-   IAQA PROJECT IMAGE
-========================================== */
+/* =====================================================
+   IAQA IMAGE PREVIEW
+   ===================================================== */
 
+.demo-card img,
 .demo-card img.project-preview {
-
     display: block;
 
-    /* Fit inside project card */
-    width: 100%;
-
-    /* Maximum preview width */
-    max-width: 400px;
+    /* Prevent image from exceeding card width */
+    width: 100% !important;
+    max-width: 360px !important;
 
     /* Maintain original image proportions */
-    height: auto;
+    height: auto !important;
+    aspect-ratio: auto !important;
 
-    /* Show the COMPLETE image */
-    object-fit: contain;
+    /* Show complete image */
+    object-fit: contain !important;
 
     /* Center image */
     margin: 0 auto;
@@ -421,43 +402,34 @@
 }
 
 
-/* ==========================================
+/* =====================================================
    PROJECT DESCRIPTION
-========================================== */
+   ===================================================== */
 
 .demo-description {
-
     width: 100%;
+    box-sizing: border-box;
 
     padding: 18px 5px 5px;
-
-    box-sizing: border-box;
 }
 
 .demo-description h4 {
-
     margin: 10px 0;
-
     font-size: 1.1rem;
-
     color: #ffffff;
 }
 
 .demo-description p {
-
     margin-top: 10px;
-
     font-size: 0.92rem;
-
     line-height: 1.7;
-
     color: #c9d3f5;
 }
 
 
-/* ==========================================
+/* =====================================================
    TABLET RESPONSIVE
-========================================== */
+   ===================================================== */
 
 @media (max-width: 1024px) {
 
@@ -466,21 +438,21 @@
     }
 
     .demo-card video,
+    .demo-card img,
     .demo-card img.project-preview {
-        max-width: 400px;
+        max-width: 360px !important;
     }
 }
 
 
-/* ==========================================
+/* =====================================================
    MOBILE RESPONSIVE
-========================================== */
+   ===================================================== */
 
 @media (max-width: 640px) {
 
     .demo-grid {
         grid-template-columns: 1fr;
-
         gap: 20px;
     }
 
@@ -489,15 +461,11 @@
     }
 
     .demo-card video,
+    .demo-card img,
     .demo-card img.project-preview {
-
-        width: 100%;
-
-        max-width: 100%;
-
-        height: auto;
-
-        object-fit: contain;
+        width: 100% !important;
+        max-width: 100% !important;
+        height: auto !important;
+        object-fit: contain !important;
     }
-
 }
