@@ -314,7 +314,7 @@
 .demo-card video {
     display: block;
     width: 100%;
-    max-width: 550px;       /* Change this to 400px, 500px, etc. */
+    max-width: 300px;       /* Change this to 400px, 500px, etc. */
     height: auto;
     aspect-ratio: 16 / 9;
     object-fit: contain;
