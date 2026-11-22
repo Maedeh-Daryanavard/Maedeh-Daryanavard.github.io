@@ -847,29 +847,46 @@
   #projects .sample-card:hover { transform: none; }
 }
 
-/* =====================================
-   OTHER PROJECTS - ONE COMBINED CARD
-===================================== */
 
-#projects .other-projects-box,
+/* ==========================================
+   OTHER PROJECTS - SINGLE COMBINED CARD
+========================================== */
+
+/* Main container */
+
+#projects .other-projects-box {
+  box-sizing: border-box;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+
+  margin-top: 35px;
+  padding: 24px;
+
+  background: #f1f5f9;
+  border: 1px solid #dbe3ed;
+  border-radius: 16px;
+
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.05);
+  overflow: hidden;
+}
+
 #projects .other-projects-box * {
   box-sizing: border-box;
 }
 
-#projects .other-projects-box {
-  background: #f8fafc;
-  border: 1px solid #e2e8f0;
-  border-radius: 16px;
-  box-shadow: 0 4px 18px rgba(15, 23, 42, 0.05);
-}
+/* ==========================================
+   HEADER
+========================================== */
 
 #projects .other-projects-header {
-  margin-bottom: 18px;
+  margin: 0 0 18px;
 }
 
 #projects .other-projects-eyebrow {
   display: block;
   margin-bottom: 8px;
+
   color: #2563eb;
   font-size: 0.75rem;
   font-weight: 700;
@@ -879,85 +896,143 @@
 
 #projects .other-projects-title {
   margin: 0 0 8px;
+
+  color: #0f172a;
   font-size: 1.4rem;
   font-weight: 700;
-  color: #0f172a;
+  line-height: 1.4;
 }
 
 #projects .other-projects-description {
   margin: 0;
+
+  color: #64748b;
   font-size: 0.9rem;
   line-height: 1.6;
-  color: #64748b;
 }
 
-/* Three rows inside one card */
+/* ==========================================
+   PROJECT LIST
+========================================== */
 
 #projects .other-projects-list {
   display: flex;
   flex-direction: column;
+
+  width: 100%;
+  min-width: 0;
 }
+
+/* Individual project row */
 
 #projects .other-project-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  width: 100%;
+  min-width: 0;
+  gap: 15px;
+  padding: 17px 10px;
+
   background: transparent;
-  border-bottom: 1px solid #e2e8f0;
+  border: none;
+  border-bottom: 1px solid #dbe3ed;
+  border-radius: 0;
+
+  color: inherit;
+  text-decoration: none;
+
+  transition: background 0.2s ease;
 }
 
+/* Remove last divider */
 
 #projects .other-project-item:last-child {
   border-bottom: none;
 }
 
+/* Hover effect */
+
 #projects .other-project-item:hover {
   background: rgba(37, 99, 235, 0.06);
   border-radius: 8px;
 }
-/* Icons */
+
+/* ==========================================
+   PROJECT ICON
+========================================== */
 
 #projects .other-project-icon {
   display: flex;
   align-items: center;
   justify-content: center;
+
   flex: 0 0 44px;
   width: 44px;
   height: 44px;
-  border-radius: 10px;
-  background: #eff6ff;
+
+  background: #dbeafe;
   color: #2563eb;
+  border-radius: 10px;
+
   font-size: 1rem;
 }
 
-/* Project titles and descriptions */
+/* ==========================================
+   PROJECT TEXT
+========================================== */
 
 #projects .other-project-content {
   display: flex;
-  flex: 1;
   flex-direction: column;
-  gap: 5px;
+  flex: 1;
+
   min-width: 0;
+  gap: 5px;
 }
 
+/* Project title */
+
 #projects .other-project-content strong {
+  display: block;
+  margin: 0;
+
+  color: #0f172a;
   font-size: 0.92rem;
   font-weight: 600;
   line-height: 1.45;
-  color: #0f172a;
+
   overflow-wrap: anywhere;
 }
 
+/* Project description */
+
 #projects .other-project-content small {
+  display: block;
+  margin: 0;
+
+  color: #64748b;
   font-size: 0.78rem;
   line-height: 1.5;
-  color: #64748b;
+
+  overflow-wrap: anywhere;
 }
 
-/* Arrow */
+/* ==========================================
+   ARROW
+========================================== */
 
 #projects .other-project-arrow {
+  display: inline-block;
   flex-shrink: 0;
+
   margin-left: auto;
+
   color: #94a3b8;
   font-size: 0.8rem;
+
+  transition: color 0.2s ease;
 }
 
 #projects .other-project-item:hover
@@ -965,12 +1040,16 @@
   color: #2563eb;
 }
 
-/* Mobile responsiveness */
+/* ==========================================
+   MOBILE RESPONSIVENESS
+========================================== */
 
 @media (max-width: 600px) {
+
   #projects .other-projects-box {
-    padding: 18px;
+    width: 100%;
     margin-top: 25px;
+    padding: 16px;
     border-radius: 13px;
   }
 
@@ -978,13 +1057,17 @@
     font-size: 1.2rem;
   }
 
+  #projects .other-projects-description {
+    font-size: 0.85rem;
+  }
+
   #projects .other-project-item {
     gap: 12px;
-    padding: 16px 0;
+    padding: 15px 4px;
   }
 
   #projects .other-project-icon {
-    flex-basis: 38px;
+    flex: 0 0 38px;
     width: 38px;
     height: 38px;
     font-size: 0.9rem;
@@ -997,5 +1080,30 @@
   #projects .other-project-content small {
     font-size: 0.74rem;
   }
+
+  #projects .other-project-arrow {
+    font-size: 0.7rem;
+  }
 }
 
+/* ==========================================
+   EXTRA SMALL PHONES
+========================================== */
+
+@media (max-width: 380px) {
+
+  #projects .other-projects-box {
+    padding: 12px;
+  }
+
+  #projects .other-project-item {
+    gap: 9px;
+  }
+
+  #projects .other-project-icon {
+    flex-basis: 34px;
+    width: 34px;
+    height: 34px;
+  }
+
+}
