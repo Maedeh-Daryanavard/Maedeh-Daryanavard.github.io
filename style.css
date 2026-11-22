@@ -1107,3 +1107,75 @@
   }
 
 }
+
+/* ==========================================
+   OTHER PROJECTS - DARK PORTFOLIO THEME
+========================================== */
+
+#projects .other-projects-box {
+  background: rgba(255, 255, 255, 0.045);
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  box-shadow: none;
+}
+
+/* Header */
+
+#projects .other-projects-eyebrow {
+  color: var(--accent);
+}
+
+#projects .other-projects-title {
+  color: var(--text);
+}
+
+#projects .other-projects-description {
+  color: var(--muted);
+}
+
+/* Three project rows */
+
+#projects .other-project-item {
+  background: transparent;
+  border-bottom: 1px solid var(--line);
+  color: var(--text);
+}
+
+#projects .other-project-item:last-child {
+  border-bottom: none;
+}
+
+#projects .other-project-item:hover {
+  background: rgba(127, 184, 255, 0.08);
+}
+
+/* Icons */
+
+#projects .other-project-icon {
+  background: rgba(127, 184, 255, 0.10);
+  color: var(--accent);
+}
+
+/* Project titles */
+
+#projects .other-project-content strong {
+  color: var(--text);
+}
+
+/* Project descriptions */
+
+#projects .other-project-content small {
+  color: var(--muted);
+}
+
+/* Arrows */
+
+#projects .other-project-arrow {
+  color: var(--accent);
+}
+
+#projects .other-project-item:hover
+.other-project-arrow {
+  color: var(--accent-2);
+}
+
